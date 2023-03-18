@@ -51,11 +51,11 @@ export const NeonBox: React.FC<BoxProps> = (props) => {
     )
 };
 
-interface IDataListProps {
+interface IDataAddEventProps {
     children?: React.ReactNode;
 }
 
-export const MainDataAddEvent: React.FC<IDataListProps> = (props) => {
+export const MainDataAddEvent: React.FC<IDataAddEventProps> = (props) => {
     return (
       <Box
         as='main'
