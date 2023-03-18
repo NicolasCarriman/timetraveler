@@ -19,14 +19,16 @@ export const AddEventComponent: React.FC<AddEventProps> = (
     const { configuration } = useAddEvent(
         config
     );
-    const ClickMe = () => {
+    const SaveEventAndLoadCard = () => {
         console.log("Button Clicked, must load the Card component and also save to the db new event on timeline");
     };
-
+    const BackToTimeLine = () => {
+        console.log("Button Clicked, must back to TimeLine");
+    };
     return (
         <>
             <Arrow 
-                onClick={ClickMe} 
+                onClick={SaveEventAndLoadCard} 
                 color="white"
                 top="29.3vh"
                 left="70vw"
@@ -35,7 +37,7 @@ export const AddEventComponent: React.FC<AddEventProps> = (
              {'>'}
             </Arrow>
             <Arrow 
-                onClick={ClickMe}
+                onClick={BackToTimeLine}
                 color="white" 
                 top="29.3vh"
                 left="22vw"
