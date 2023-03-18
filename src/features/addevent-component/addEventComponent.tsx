@@ -27,13 +27,21 @@ export const AddEventComponent: React.FC<AddEventProps> = (
         <>
             <Arrow 
                 onClick={ClickMe} 
-                border="1px" 
-                color="rgba(14,0,255,1)" 
-                height="30vh"
-                width="20vw" 
-                radius="3px"
+                color="white"
+                top="29.3vh"
+                left="70vw"
+                orientation="right"
             >
              {'>'}
+            </Arrow>
+            <Arrow 
+                onClick={ClickMe}
+                color="white" 
+                top="29.3vh"
+                left="22vw"
+                orientation="left"
+            >
+             {'<'}
             </Arrow>
             <AddEventContainer
                 maxWidth='40vw'

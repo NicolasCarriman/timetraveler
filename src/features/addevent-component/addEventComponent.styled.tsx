@@ -11,9 +11,7 @@ export const AddEventContainer: React.FC<ContainerProps> = (props) => (
     position='absolute'
     top='25vh'
     left='28.5vw'
-    border='solid'
-    borderColor='#7878ff'
-    borderRadius='12px'
+    border='none'
     display='flex'
     flexDir='column'
     boxSizing='border-box'
@@ -23,11 +21,11 @@ export const AddEventContainer: React.FC<ContainerProps> = (props) => (
 );
 
 const animationKeyframes = keyframes`
-  0% { box-shadow: 3px 4px 11px #adfaf1; }
-  25% { box-shadow: 3px 4px 11px #00ffe1; }
-  50% { box-shadow: 3px 4px 11px red; }
-  75% { box-shadow: 3px 4px 11px #00ffe1; }
-  100% { box-shadow: 3px 4px 11px #adfaf1; }
+  0% { box-shadow: rgba(0, 26, 255, 0.5) 0px 2px 0px, rgba(255, 255, 255, 0.5) 0px 4px 0px, rgba(255, 255, 255, 0.1) 0px 8px 0px, rgba(255, 255, 255, 0.1) 0px 16px 8px, rgba(255, 255, 255, 0.1) 0px 32px 16px; }
+  25% { box-shadow: rgba(0, 26, 255, 0.5) 0px 2px 0px, rgba(255, 255, 255, 0.5) 0px 4px 0px, rgba(255, 255, 255, 0.1) 0px 8px 0px, rgba(255, 255, 255, 0.1) 0px 16px 8px, rgba(255, 255, 255, 0.1) 0px 32px 16px; }
+  50% { box-shadow: rgba(0, 26, 255, 0.5) 0px 2px 0px, rgba(255, 255, 255, 0.5) 0px 4px 0px, rgba(255, 255, 255, 0.1) 0px 8px 0px, rgba(255, 255, 255, 0.1) 0px 16px 8px, rgba(255, 255, 255, 0.1) 0px 32px 16px; }
+  75% { box-shadow: rgba(0, 26, 255, 0.5) 0px 2px 0px, rgba(255, 255, 255, 0.5) 0px 4px 0px, rgba(255, 255, 255, 0.1) 0px 8px 0px, rgba(255, 255, 255, 0.1) 0px 16px 8px, rgba(255, 255, 255, 0.1) 0px 32px 16px; }
+  100% { box-shadow: rgba(0, 26, 255, 0.5) 0px 2px 0px, rgba(255, 255, 255, 0.5) 0px 4px 0px, rgba(255, 255, 255, 0.1) 0px 8px 0px, rgba(255, 255, 255, 0.1) 0px 16px 8px, rgba(255, 255, 255, 0.1) 0px 32px 16px; }
 `;
 
 const animation = `${animationKeyframes} 2.5s ease-in-out infinite`;
@@ -38,16 +36,13 @@ export const NeonBox: React.FC<BoxProps> = (props) => {
         id='neonShadow'
         as={motion.div}
         animation={animation}
-        boxShadow='3px 4px 11px #adfaf1'
+        boxShadow='rgba(0, 26, 255, 0.5) 0px 2px 0px, rgba(255, 255, 255, 0.5) 0px 4px 0px, rgba(255, 255, 255, 0.1) 0px 8px 0px, rgba(255, 255, 255, 0.1) 0px 16px 8px, rgba(255, 255, 255, 0.1) 0px 32px 16px'
         boxSizing='border-box'
-        background='#3128287a'
+        background='#070707'
         height='100%'
         display='flex'
         flexDirection='column'
-        border='solid'
         p='4'
-        borderColor='#d8ffe9'
-        borderWidth='1px'
         borderRadius='8px'
         {...props}
       >
@@ -94,6 +89,7 @@ export const InputField: React.FC<{
         <Input
             type={type}
             isRequired
+            textAlign='center'
             position='relative'
             top={top}
             left={left}
@@ -110,40 +106,56 @@ export const InputField: React.FC<{
     )
 }
 
-interface Props {
-  border: string;
+interface ArrowProps {
   color: string;
   children?: React.ReactNode;
-  height: string;
   onClick: () => void;
-  radius: string
-  width: string;
+  top: string;
+  left: string;
+  orientation: string;
 }
-export const Arrow: React.FC<Props> = ({ 
-	border,
+export const Arrow: React.FC<ArrowProps> = ({ 
 	color,
 	children,
-	height,
 	onClick, 
-	radius,
-	width
+  top,
+  left,
+  orientation
 	}) => {
-
+    
     return (
-		<button 
-			onClick={onClick}
-			style={{
-			background: 'linear-gradient(90deg, rgba(160,200,255,0.6026785714285714) 0%, rgba(0,142,255,0.29735644257703087) 1%, rgba(0,151,255,0.2497373949579832) 15%, rgba(0,151,255,0) 70%)',
-			border,
-			borderRadius: radius,
-			height,
-			width,
-			position: 'absolute',
-			top: '28.3vh',
-			left: '70vw'
-			}}
-		>
-		{children}
-	 	</button>
+      orientation == "left" ? 
+        <button 
+        onClick={onClick}
+        style={{
+        color: color,
+        background: '#070707',
+        boxShadow: 'rgba(0, 26, 255, 0.5) -2px 2px 0px, rgba(255, 255, 255, 0.5) -4px 4px 0px , rgba(255, 255, 255, 0.1) -8px 8px 0px, rgba(255, 255, 255, 0.1) -16px 16px 8px, rgba(255, 255, 255, 0.1) -32px 32px 16px',
+        borderRadius: '20px',
+        height: "29vh",
+        width: "5vw",
+        position: 'absolute',
+        top: top,
+        left: left
+        }}
+      >
+        {children}
+      </button> :
+        <button 
+        onClick={onClick}
+        style={{
+        color: color,
+        background: '#070707',
+        boxShadow: 'rgba(0, 26, 255, 0.5) 2px 2px 0px, rgba(255, 255, 255, 0.5) 4px 4px 0px , rgba(255, 255, 255, 0.1) 8px 8px 0px, rgba(255, 255, 255, 0.1) 16px 16px 8px, rgba(255, 255, 255, 0.1) 32px 32px 16px',
+        borderRadius: '20px',
+        height: "29vh",
+        width: "5vw",
+        position: 'absolute',
+        top: top,
+        left: left
+        }}
+      >
+        {children}
+      </button>
     );
 };
