@@ -5,19 +5,6 @@ import { useCarrousel } from "../../hooks/useCarrousel";
 import getRandomId from "../../utilis/uid";
 import { CarrouselContainer, CarrouselElement, ItemCarrousel } from "./CarrouselComponent.styled";
 
-//value 340deg
-//cada 20
-//ahora tenemos que configurar el componente que se maneje por posiciones
-//primera posicion selected ultima posicion
-// hice click en un elemento, ese elemento es mayor a el elemento previo? y esta a un rango de dos lugares? next()
-//sino 
-
-function reOrderData (data : ICarrouselData[]) {
-  const first = data.slice(2, data.length);
-  const last = data.slice(0,2);
-  return (first.concat(last));
-}
-
 
 const getArray = (num: number) => {
   let unitys = [];
@@ -34,16 +21,7 @@ const getArray = (num: number) => {
   return unitys;
 }
 
-const array = getArray(8);
-
-interface ICarrouselData {
-  element: string;
-  selected: boolean;
-  id: string;
-  position: number;
-}
-
-//debo de tomar los numeros que se van a ver
+const array = getArray(32);
 
 function CarrouselComponent() {
   const {
@@ -74,17 +52,17 @@ function CarrouselComponent() {
   return (
     <CarrouselContainer>
       <CarrouselElement degrees={degrees}>
-        {
-          renderData.map((e, i) => (
-            <ItemCarrousel
-              item={e}
-              onClick={() => handleClick(e.id)}
-              key={i}
-              var={i + 1}
-              elementopacity= {e.opacity}
-            />
-          ))
-        }
+          {
+            renderData.map((e, i) => (
+              <ItemCarrousel
+                item={e}
+                onClick={() => handleClick(e.id)}
+                key={i}
+                var={i + 1}
+                elementopacity= {e.opacity}
+              />
+            ))
+          }
       </CarrouselElement>
     </CarrouselContainer>
   );

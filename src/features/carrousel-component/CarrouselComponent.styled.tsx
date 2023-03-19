@@ -9,30 +9,33 @@ interface ItemCarrouselProps extends BoxProps {
 }
 
 export const ItemCarrousel: React.FC<ItemCarrouselProps> = (props) => {
-
   const isSelected = props.item.selected;
+  let isVisible = props.elementopacity !== '0';
 
   return (
     <Box
-      ml='12'
       as='h3'
-      left='0'
-      right='0'
-      position='absolute'
+      ml='28'
+      mr='34'
+      left={0} // Agregar left: 0
+      right={0} // Agregar right: 0
+      position='absolute' // Establecer la propiedad position en absolute
       fontSize='1.4em'
       fontWeight={400}
       letterSpacing='10px'
       lineHeight='2em'
       textShadow={isSelected ? '-1px 3px 8px #0074ff, 3px -4px 8px #b800ff' : 'none'}
       sx={{
+        pointerEvents: isVisible ? 'auto' : 'none',
         cursor: 'pointer',
         opacity: props.elementopacity,
         transition: '0.4s',
+        maxW:'26vh',
         width: '100%',
-        minWidth: '34vw',
-        textAlign: 'left',
+        minWidth: '18vw',
+        textAlign: 'center',
         color: isSelected ? '#00ffd0' : '#fff',
-        transform: `translate(-50%, -50%)
+        transform: `
           rotateX(calc(${props.var} * 20deg)) translateZ(105px)`
       }}
       {...props}
@@ -40,7 +43,6 @@ export const ItemCarrousel: React.FC<ItemCarrouselProps> = (props) => {
       {props.item.element}
     </Box>
   );
-
 };
 
 export const CarrouselContainer: React.FC<BoxProps> = (props) => (
@@ -64,7 +66,7 @@ interface CarrouselProps extends BoxProps {
 export const CarrouselElement: React.FC<CarrouselProps> = (props) => {
   return (
     <Box
-      className="carrousel"
+      id="carrousel"
       position='relative'
       sx={{
         transformStyle: 'preserve-3d',
@@ -72,11 +74,15 @@ export const CarrouselElement: React.FC<CarrouselProps> = (props) => {
         transform: `rotateX(${props.degrees}deg)`,
         position: 'relative',
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'left',
-        alignItems: 'flex-start'
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minH: '60vh',
+        height: '100%',
+        width: '100%',
       }}
       {...props}
     />
   );
 }
+
