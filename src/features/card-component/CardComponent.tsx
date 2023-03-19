@@ -15,16 +15,18 @@ import {
 } from "./CardComponent.styled";
 
 interface CardProps {
-    imgUrl: string | undefined
+    imagesUrl: string[]
     config: ModuleCardConfiguration
+    currentSlide: number
 }
 
 export const CardComponent: React.FC<CardProps> = (
-    { imgUrl = undefined, config }
+    { imagesUrl = [], config, currentSlide }
 ) => {
-    const { img, configuration } = useCard(
-        imgUrl,
+    const { images, configuration, currentSlideSelected } = useCard(
+        imagesUrl,
         config,
+        currentSlide,
     );
     const SaveCardAndLoadTimeLine = () => {
         console.log("Button Clicked, must save the Card component");
@@ -69,7 +71,7 @@ export const CardComponent: React.FC<CardProps> = (
                 <NeonBox>
                     <MainDataCard>
                         <BannerContainer>
-                            <HeaderBanner imgUrl="https://media.timeout.com/images/105879336/750/422/image.jpg" />
+                            <HeaderBanner imageUrl={images[currentSlideSelected]} />
                         </BannerContainer>
                         <InputContainer>
                             <TextArea 
