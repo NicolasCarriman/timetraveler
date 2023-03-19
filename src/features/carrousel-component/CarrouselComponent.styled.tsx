@@ -77,9 +77,9 @@ export const CarrouselElement: React.FC<CarrouselProps> = (props) => {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        minH: '60vh',
+        minH: '40vh',
         height: '100%',
-        width: '100%',
+        width: '29vw',
       }}
       {...props}
     />

@@ -3,8 +3,9 @@ import { Activity } from "../models/activity";
 import { ModuleListConfiguration } from "../models/moduleListConfig";
 
 export const useList = (
-    imgUrl: string,
+    imagesUrl: string[],
     config: ModuleListConfiguration,
+    currentSlide: number,
   ) => {
 
   const [configuration, setConfiguration] = React.useState(
@@ -17,8 +18,12 @@ export const useList = (
       carrousel: config.carrousel
     }
   );
-  const [img, setImg] = React.useState<string | null>(null);
+    
+  const [images, setImages] = React.useState<string[]>(imagesUrl);
+  const [currentSlideSelected, setCurrentSlide] = React.useState(0);
 
+
+  /*
   const getImgUrl = () => {
     if(imgUrl){
       const fetchBanner = async() => {
@@ -37,9 +42,11 @@ export const useList = (
   React.useEffect(() => {
     getImgUrl();
   }, []);
+  */
 
   return {
-    img,
+    images,
+    currentSlideSelected,
     configuration,
   }
 }

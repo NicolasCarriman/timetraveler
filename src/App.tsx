@@ -21,7 +21,7 @@ const configuration: ModuleListConfiguration = {
     red: 0,
     blue: 0
   },
-  bannerActivated: false,
+  bannerActivated: true,
   bannerEdit: false,
   leftArrow: false,
   rightArrow: false,
@@ -45,7 +45,7 @@ const configurationCard: ModuleCardConfiguration = {
     red: 0,
     blue: 0
   },
-  animationsMode: true,
+  animationsMode: false,
   textArea: "Budapest, Hungary \n\nBudapest is the capital and most populous city of Hungary. It is the ninth-largest city in the European Union by population within city limits and the second-largest city on the Danube river; the city has an estimated population of 1,752,286 over a land area of about 525 square kilometers (203 square miles). Budapest, which is both a city and county, forms the center of the Budapest metropolitan area, which has an area of 7,626 square kilometers (2,944 square miles) and a population of 3,303,786; it is a primate city, constituting 33% of the population of Hungary.",
   leftArrow: false,
   rightArrow: false,
@@ -69,7 +69,7 @@ function App() {
     <ChakraProvider
       theme={theme}
     >
-      <CardComponent config={configurationCard} imagesUrl={[img1, img2, img3, img4]} currentSlide={0}/>
+      <ListComponent config={configuration} imagesUrl={[img1, img2, img3, img4]} currentSlide={0}/>
     </ChakraProvider>
   );
 }
