@@ -2,8 +2,9 @@ import React from "react";
 import { ModuleCardConfiguration } from "../models/moduleCardConfig";
 
 export const useCard = (
-    imgUrl: string | undefined,
+    imagesUrl: string[],
     config: ModuleCardConfiguration,
+    currentSlide: number,
 ) => {
 
     const [configuration, setConfiguration] = React.useState(
@@ -16,13 +17,33 @@ export const useCard = (
           editMode: config.editMode,
         }
     );
-    const [img, setImg] = React.useState<string | undefined>(undefined);
+    
+    const [images, setImages] = React.useState<string[]>(imagesUrl);
+    const [currentSlideSelected, setCurrentSlide] = React.useState(0);
+
+    let switchImages = () => {
+      if (currentSlideSelected < images.length - 1) {
+        setCurrentSlide(currentSlideSelected + 1);
+        console.log(currentSlideSelected)
+      } else {
+        setCurrentSlide(0);
+      }
+    };
+    React.useEffect(() => {
+        const sliderInterval = setInterval(() => {
+          switchImages();
+        }, 5000);
+        return () => {
+          clearInterval(sliderInterval);
+        };
+    });
+    /*
     const getImgUrl = () => {
         if(imgUrl){
             const fetchBanner = async() => {
                 
                 try {
-                    const response = await fetch(imgUrl);
+                    const response = await fetch(imgUrl[0]);
                     const data = await response.json();
                     setImg(data.imgUrl);
                 } catch (error) {
@@ -36,9 +57,10 @@ export const useCard = (
     React.useEffect(() => {
         getImgUrl();
     }, []);
-
+    */
     return {
-        img,
+        images,
+        currentSlideSelected,
         configuration,
     }
 }

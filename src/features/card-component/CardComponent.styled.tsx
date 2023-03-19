@@ -28,6 +28,7 @@ export const NeonBox: React.FC<BoxProps> = (props) => {
         boxSizing='border-box'
         background='#070707'
         height='100%'
+        minH='70vh'
         display='flex'
         flexDirection='column'
         p='4'
@@ -40,8 +41,16 @@ export const NeonBox: React.FC<BoxProps> = (props) => {
 };
 
 interface IHeaderBanner extends BoxProps {
-  imgUrl: string | undefined;
+  imageUrl: string;
 }
+
+const animationImgChangeKeyframes = keyframes`
+  0% {opacity: 0;}
+  15% {opacity: 1;}
+  85% {opacity: 1;}
+  100% {opacity: 0;}
+  `;
+const animationImgChange = `${animationImgChangeKeyframes} 5s linear infinite`;
 
 export const HeaderBanner: React.FC<IHeaderBanner> = (props) => {
   return (
@@ -52,9 +61,11 @@ export const HeaderBanner: React.FC<IHeaderBanner> = (props) => {
       display='flex'
       justifyContent='center'
       alignItems='center'
+      as={motion.div}
+      animation={animationImgChange}
       {...props}
     >
-      <img src={props.imgUrl} alt='bannerImg' />
+      <img src={props.imageUrl} alt='bannerImg' />
       <Mask/>
     </Box>
   );

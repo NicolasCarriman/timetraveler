@@ -10,6 +10,10 @@ import { ModuleListConfiguration } from './models/moduleListConfig';
 import { ModuleAddEventConfiguration } from './models/moduleAddEventConfig';
 import { ModuleCardConfiguration } from './models/moduleCardConfig';
 import { ModuleNoteConfiguration } from './models/moduleNoteConfig';
+import img1 from "./theme/cities/budapest.jpg";
+import img2 from "./theme/cities/budapest2.jpg";
+import img3 from "./theme/cities/budapest3.jpg";
+import img4 from "./theme/cities/budapest4.jpg";
 
 const configuration: ModuleListConfiguration = {
   themeColor: {
@@ -65,7 +69,7 @@ function App() {
     <ChakraProvider
       theme={theme}
     >
-      <NoteComponent config={configurationNote}/>
+      <CardComponent config={configurationCard} imagesUrl={[img1, img2, img3, img4]} currentSlide={0}/>
     </ChakraProvider>
   );
 }
