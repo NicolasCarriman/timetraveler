@@ -252,6 +252,9 @@ export const useCarrousel = (array: ICarrouselData[]) => {
 
     let selectedActivity = renderData.find((act) => (act.id === id));
     if (!selectedActivity) return;
+    const previusSelected = renderData.find((act) => act.selected === true);
+    const isSameActivity = selectedActivity.id === previusSelected.id;
+    if (isSameActivity) return;
     const updateSelectedData = (selectedActivity: ICarrouselData) => {
       const prevSelectedAct = renderData.find((act) => (act.selected === true));
       if (selectedActivity === prevSelectedAct) return array;

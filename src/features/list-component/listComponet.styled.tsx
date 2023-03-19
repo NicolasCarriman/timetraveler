@@ -37,7 +37,7 @@ export const NeonBox: React.FC<BoxProps> = (props) => {
       animation={animation}
       boxShadow='3px 4px 11px #adfaf1'
       boxSizing='border-box'
-      background='#3128287a'
+      background='#2827277a'
       height='100%'
       display='flex'
       flexDirection='column'

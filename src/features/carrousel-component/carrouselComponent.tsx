@@ -37,6 +37,7 @@ function CarrouselComponent() {
 
   const handleClick = (id: string) => {
     const element = renderData.find(i => i.id === id);
+    const isSelectedElement = renderData.find((item) => item.selected === element.selected);
     if(!element) return;
     const isLastElement = element.position > (getMaxPosition(renderData) - 3);
     if (!isLastElement) {
@@ -49,9 +50,35 @@ function CarrouselComponent() {
     }
   };
 
+  const handleScroll = (event: any) => {
+    const delta = event.deltaY;
+    const elementIndex = renderData.findIndex(el => el.selected === true);
+    const isScrollUp = Math.sign(delta) < 0;
+    if (isScrollUp) {
+      let nextElment = renderData[elementIndex + 1];
+      if (elementIndex === renderData.length - 1) {
+        nextElment = renderData[0]
+      }
+      setDegrees(340);
+      next(nextElment.position);
+      setSelectElement(nextElment.id);
+    } else {
+      let previusElement = renderData[elementIndex - 1];
+      if(elementIndex === 0) {
+        const lastElementIndex = renderData.length - 1;
+        previusElement = renderData[lastElementIndex];
+      }
+      previus(previusElement.position);
+      setSelecteElementPrevius(previusElement.id);
+    }
+  }
+
   return (
     <CarrouselContainer>
-      <CarrouselElement degrees={degrees}>
+      <CarrouselElement
+        degrees={degrees}
+        onWheel={handleScroll}
+      >
           {
             renderData.map((e, i) => (
               <ItemCarrousel
