@@ -7,11 +7,7 @@ export const useNote = (
 
     const [configuration, setConfiguration] = React.useState(
         {
-          themeColor: config.themeColor,
-          animationsMode: config.animationsMode,
           textArea: config.textArea,
-          leftArrow: config.leftArrow,
-          rightArrow: config.rightArrow,
         }
     );
 
