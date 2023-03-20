@@ -10,11 +10,7 @@ export const useList = (
 
   const [configuration, setConfiguration] = React.useState(
     {
-      themeColor: config.themeColor,
       bannerActivated: config.bannerActivated,
-      leftArrow: config.leftArrow,
-      rightArrow: config.rightArrow,
-      editElements: config.editElements,
       carrousel: config.carrousel
     }
   );

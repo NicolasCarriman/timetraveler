@@ -1,5 +1,5 @@
 import { ThemeColor } from './Theme';
 
-export interface ModuleNoteConfiguration {
+export interface ModuleOverviewConfiguration {
   textArea: string
 }

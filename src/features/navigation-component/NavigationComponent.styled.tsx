@@ -1,13 +1,13 @@
-import { Box, BoxProps, keyframes, ContainerProps, Container, Textarea, propNames } from "@chakra-ui/react";
+import { Box, BoxProps, keyframes, ContainerProps, Container } from "@chakra-ui/react";
 import  React  from 'react';
 import { motion } from 'framer-motion';
 
 
-export const CardContainer: React.FC<ContainerProps> = (props) => (
+export const MainContainer: React.FC<ContainerProps> = (props) => (
     <Container
     boxShadow='dark-lg'
     variant='small'
-    h='60vh'
+    h='70vh'
     position='absolute'
     top='10vh'
     left='28.5vw'
@@ -40,75 +40,11 @@ export const NeonBox: React.FC<BoxProps> = (props) => {
     )
 };
 
-interface IHeaderBanner extends BoxProps {
-  imageUrl: string;
-}
-
-const animationImgChangeKeyframes = keyframes`
-  0% {opacity: 0;}
-  15% {opacity: 1;}
-  85% {opacity: 1;}
-  100% {opacity: 0;}
-  `;
-const animationImgChange = `${animationImgChangeKeyframes} 5s linear infinite`;
-
-export const HeaderBanner: React.FC<IHeaderBanner> = (props) => {
-  return (
-    <Box
-      id='banner'
-      h='100%'
-      width='100%'
-      display='flex'
-      justifyContent='center'
-      alignItems='center'
-      as={motion.div}
-      animation={animationImgChange}
-      {...props}
-    >
-      <img src={props.imageUrl} alt='bannerImg' />
-      <Mask/>
-    </Box>
-  );
-};
-
-export const Mask: React.FC = () => {
-  return (
-    <Box
-      id='mask'
-      position='absolute'
-      zIndex='50'
-      h='100%'
-      width='100%'
-      display='flex'
-      justifyContent='center'
-      alignItems='center'
-      boxShadow='inset 0px 0px 10px 10px #070707'
-    >
-    </Box>
-  );
-};
-
-export const BannerContainer: React.FC<BoxProps> = (props) => {
-  return(
-    <Container
-      id="banner-container"
-      position='relative'
-      padding='0'
-      variant="small"
-      height="30%"
-      width='100%'
-      maxW='100vw'
-      overflow='hidden'
-      {...props}
-    />
-  );
-}
-
-interface IDataCardProps {
+interface ILoadingAreaProps {
     children?: React.ReactNode;
 }
 
-export const MainDataCard: React.FC<IDataCardProps> = (props) => {
+export const LoadingArea: React.FC<ILoadingAreaProps> = (props) => {
     return (
       <Box
         as='main'
@@ -131,50 +67,6 @@ export const MainDataCard: React.FC<IDataCardProps> = (props) => {
       </Box>
     );
   };
-
-export const InputContainer: React.FC<BoxProps> = (props) => {
-  return(
-    <Container
-      display='flex'
-      flexDirection='column'
-      minH='46.5vh'
-      minW='38.2vw'
-      padding='3%'
-      margin='0px'
-      {...props}
-    />
-  );
-}
-
-export const TextArea: React.FC<{
-    left?: string; 
-    top?: string; 
-    width: string;
-    placeholderText?: string;
-    value?: string;
-  }> = ({left, top, width, placeholderText, value}) => {
-
-    return (
-        <Textarea
-            isRequired
-            textAlign='center'
-            position='relative'
-            resize= 'none'
-            top={top}
-            left={left}
-            px="2vw"
-            backgroundColor={"rgba(255, 255, 255, 0.01)"}
-            height="25vh"
-            value={value}
-            width={width}
-            border="none"
-            borderBottom= "1px solid gray"
-            color= "white"
-            _placeholder={{ color: "gray.600" }}
-            placeholder={placeholderText}
-        />
-    )
-}
 
 interface ArrowProps {
   color: string;
@@ -255,7 +147,7 @@ interface TabProps {
   color: string;
   children?: React.ReactNode;
   onClick: () => void;
-  activated: string;
+  activated: boolean;
   name: string;
 }
 export const Tab: React.FC<TabProps> = ({ 
@@ -267,7 +159,7 @@ export const Tab: React.FC<TabProps> = ({
 	}) => {
     
     return (
-      activated == "true" ? 
+      activated ? 
       <Box
         id='neonShadow'
         as={motion.div}

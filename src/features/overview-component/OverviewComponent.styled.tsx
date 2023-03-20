@@ -1,8 +1,6 @@
-import { Box, BoxProps, keyframes } from "@chakra-ui/react";
+import { Box, BoxProps, keyframes, Container, Textarea } from "@chakra-ui/react";
 import  React  from 'react';
-import { Container } from "../../components/container";
 import { motion } from 'framer-motion';
-
 
 interface IHeaderBanner extends BoxProps {
   imageUrl: string;
@@ -82,17 +80,32 @@ export const InputContainer: React.FC<BoxProps> = (props) => {
   );
 }
 
-export const EmptyDestinys: React.FC = () => (
-  <Box as='h1'>
-    no activitys avalible
-  </Box>
-);
+export const TextArea: React.FC<{
+    left?: string; 
+    top?: string; 
+    width: string;
+    placeholderText?: string;
+    value?: string;
+  }> = ({left, top, width, placeholderText, value}) => {
 
-interface ArrowProps {
-  color: string;
-  children?: React.ReactNode;
-  onClick: () => void;
-  top: string;
-  left: string;
-  orientation: string;
+    return (
+        <Textarea
+            isRequired
+            textAlign='center'
+            position='relative'
+            resize= 'none'
+            top={top}
+            left={left}
+            px="2vw"
+            backgroundColor={"rgba(255, 255, 255, 0.01)"}
+            height="25vh"
+            value={value}
+            width={width}
+            border="none"
+            borderBottom= "1px solid gray"
+            color= "white"
+            _placeholder={{ color: "gray.600" }}
+            placeholder={placeholderText}
+        />
+    )
 }
