@@ -19,7 +19,6 @@ export const useOverview = (
     let switchImages = () => {
       if (currentSlideSelected < images.length - 1) {
         setCurrentSlide(currentSlideSelected + 1);
-        console.log(currentSlideSelected)
       } else {
         setCurrentSlide(0);
       }

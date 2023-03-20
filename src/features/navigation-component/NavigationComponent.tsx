@@ -61,8 +61,6 @@ export const NavigationComponent: React.FC<NavigationProps> = (
         console.log("Button Clicked, must back to TimeLine");
     };
 
-    const [tabSelected, setTab] = useState("")
-
     const componentToRender = (componentName: string) => {
         switch(componentName) {
             case 'list':
@@ -77,32 +75,74 @@ export const NavigationComponent: React.FC<NavigationProps> = (
                 return <OverviewComponent config={configurationOverview} imagesUrl={[img1, img2, img3, img4]} currentSlide={0}/>;
         }
     }
+    const [isHoverArrowLeft, setIsHoverArrowLeft] = useState(false);
 
+    const handleMouseEnterArrowLeft = () => {
+        setIsHoverArrowLeft(true);
+    };
+  
+    const handleMouseLeaveArrowLeft = () => {
+        setIsHoverArrowLeft(false);
+    };
+
+    const [isHoverArrowRight, setIsHoverArrowRight] = useState(false);
+
+    const handleMouseEnterArrowRight = () => {
+        setIsHoverArrowRight(true);
+    };
+  
+    const handleMouseLeaveArrowRight = () => {
+        setIsHoverArrowRight(false);
+    };
+    const [isHoverTab, setIsHoverTab] = useState(-1);
+
+    const handleMouseEnterTab = (tabSelected: number) => {
+        setIsHoverTab(tabSelected);
+    };
+  
+    const handleMouseLeaveTab = () => {
+        setIsHoverTab(-1);
+    };
+    
     return (
         <>
             {
                 configuration.rightArrow ?
-                <Arrow 
-                    onClick={onClickRightArrow} 
-                    color="white"
-                    top="12vh"
-                    left="70vw"
-                    orientation="right"
+                <div
+                    onMouseEnter={handleMouseEnterArrowRight}
+                    onMouseLeave={handleMouseLeaveArrowRight}
                 >
-                    {'>'}
-                </Arrow> : null
+                    <Arrow 
+                        onClick={onClickRightArrow} 
+                        color="white"
+                        top="12vh"
+                        left="70vw"
+                        orientation="right"
+                        isHoverArrowRight={isHoverArrowRight}
+                    >
+                        {'>'}
+                    </Arrow> 
+                </div>
+                : null
             }
             {
                 configuration.leftArrow ?
-                <Arrow 
-                    onClick={onClickLeftArrow}
-                    color="white" 
-                    top="12vh"
-                    left="22vw"
-                    orientation="left"
+                <div
+                    onMouseEnter={handleMouseEnterArrowLeft}
+                    onMouseLeave={handleMouseLeaveArrowLeft}
                 >
-                    {'<'}
-                </Arrow> : null
+                    <Arrow 
+                        onClick={onClickLeftArrow}
+                        color="white" 
+                        top="12vh"
+                        left="22vw"
+                        orientation="left"
+                        isHoverArrowLeft={isHoverArrowLeft}
+                    >
+                        {'<'}
+                    </Arrow> 
+                </div>
+                : null
             }
             <MainContainer
                 maxWidth='40vw'
@@ -112,9 +152,24 @@ export const NavigationComponent: React.FC<NavigationProps> = (
                 {
                     configuration.tabPanel ?
                     <TabContainer>
-                        <Tab onClick={() => changeTab("overview")} color="white" activated={true} name="Overview"/>
-                        <Tab onClick={() => changeTab("addevent")} color="white" activated={false} name="Activities"/>
-                        <Tab onClick={() => changeTab("note")} color="white" activated={false} name="Notes"/>
+                        <div
+                            onMouseEnter={() => handleMouseEnterTab(0)}
+                            onMouseLeave={handleMouseLeaveTab}
+                        >
+                            <Tab onClick={() => changeTab("overview")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "overview" ? true : false} isHover={isHoverTab == 0 ? true : false} name="Overview"/>
+                        </div>
+                        <div
+                            onMouseEnter={() => handleMouseEnterTab(1)}
+                            onMouseLeave={handleMouseLeaveTab}
+                        >
+                            <Tab onClick={() => changeTab("addevent")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "addevent" ? true : false} isHover={isHoverTab == 1 ? true : false} name="Activities"/>
+                        </div>
+                        <div
+                            onMouseEnter={() => handleMouseEnterTab(2)}
+                            onMouseLeave={handleMouseLeaveTab}
+                        >
+                            <Tab onClick={() => changeTab("note")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "note" ? true : false} isHover={isHoverTab == 2 ? true : false} name="Notes"/>
+                        </div>
                     </TabContainer> : null
                 }
                 <NeonBox>

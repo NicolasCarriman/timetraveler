@@ -8,7 +8,7 @@ import { ModuleNavigationConfiguration } from './models/moduleNavigationConfig';
 
 const configurationNavigation: ModuleNavigationConfiguration = {
   id: "5ceeda5f-4cf3-4a01-b625-b5d56aed7046",
-  activeComponentName: "list",
+  activeComponentName: "overview",
   themeColor: {
     cyan: 0,
     red: 0,
