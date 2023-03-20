@@ -22,9 +22,9 @@ export const useNavigation = (
 			width: config.width
         }
     );
-	const [activeComponentName, setActiveComponentName] = React.useState("")
 
 	const changeTab = (asd: string) => {
+
 		setConfiguration({...configuration, activeComponentName: asd})
 	};
 	

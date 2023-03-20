@@ -75,24 +75,29 @@ interface ArrowProps {
   top: string;
   left: string;
   orientation: string;
+  isHoverArrowLeft?: boolean
+  isHoverArrowRight?: boolean
 }
 export const Arrow: React.FC<ArrowProps> = ({ 
 	color,
 	children,
-	onClick, 
-  top,
-  left,
-  orientation
+	onClick,
+	isHoverArrowLeft,
+	isHoverArrowRight,
+	top,
+	left,
+	orientation
 	}) => {
     
     return (
-      orientation == "left" ? 
+      orientation == "left" ?
         <button 
         onClick={onClick}
         style={{
           color: color,
-          background: '#070707',
-          boxShadow: 'rgba(0, 26, 255, 0.5) -2px 2px 0px, rgba(255, 255, 255, 0.5) -4px 4px 0px , rgba(255, 255, 255, 0.1) -8px 8px 0px, rgba(255, 255, 255, 0.1) -16px 16px 8px, rgba(255, 255, 255, 0.1) -32px 32px 16px',
+		  transition: '0.5s',
+          background: isHoverArrowLeft ? 'linear-gradient(90deg, rgba(255,255,255,0.6026785714285714) 0%, rgba(78,116,176,0.6895133053221288) 3%, rgba(0,151,255,0.2497373949579832) 15%, rgba(0,151,255,0) 70%)': '#070707',
+          boxShadow: isHoverArrowLeft ? 'rgba(0, 26, 255, 1) -2px 2px 0px, rgba(255, 255, 255, 0.9) -4px 4px 0px, rgba(255, 255, 255, 0.2) -8px 8px 0px, rgba(255, 255, 255, 0.2) -16px 16px 8px, rgba(255, 255, 255, 0.1) -32px 32px 16px' : 'rgba(0, 26, 255, 0.5) -2px 2px 0px, rgba(255, 255, 255, 0.5) -4px 4px 0px, rgba(255, 255, 255, 0.1) -8px 8px 0px, rgba(255, 255, 255, 0.1) -16px 16px 8px, rgba(255, 255, 255, 0.1) -32px 32px 16px',
           borderRadius: '20px',
           height: "76.4vh",
           width: "5vw",
@@ -107,8 +112,9 @@ export const Arrow: React.FC<ArrowProps> = ({
         onClick={onClick}
         style={{
           color: color,
-          background: '#070707',
-          boxShadow: 'rgba(0, 26, 255, 0.5) 2px 2px 0px, rgba(255, 255, 255, 0.5) 4px 4px 0px , rgba(255, 255, 255, 0.1) 8px 8px 0px, rgba(255, 255, 255, 0.1) 16px 16px 8px, rgba(255, 255, 255, 0.1) 32px 32px 16px',
+		  transition: '0.5s',
+          background: isHoverArrowRight ? 'linear-gradient(270deg, rgba(255,255,255,0.6026785714285714) 0%, rgba(78,116,176,0.6895133053221288) 3%, rgba(0,151,255,0.2497373949579832) 15%, rgba(0,151,255,0) 70%)': '#070707',
+          boxShadow: isHoverArrowRight ? 'rgba(0, 26, 255, 1) 2px 2px 0px, rgba(255, 255, 255, 0.9) 4px 4px 0px, rgba(255, 255, 255, 0.2) 8px 8px 0px, rgba(255, 255, 255, 0.2) 16px 16px 8px, rgba(255, 255, 255, 0.1) 32px 32px 16px' : 'rgba(0, 26, 255, 0.5) 2px 2px 0px, rgba(255, 255, 255, 0.5) 4px 4px 0px, rgba(255, 255, 255, 0.1) 8px 8px 0px, rgba(255, 255, 255, 0.1) 16px 16px 8px, rgba(255, 255, 255, 0.1) 32px 32px 16px',
           borderRadius: '20px',
           height: "76.4vh",
           width: "5vw",
@@ -149,23 +155,23 @@ interface TabProps {
   onClick: () => void;
   activated: boolean;
   name: string;
+  isHover: boolean;
 }
 export const Tab: React.FC<TabProps> = ({ 
 	color,
 	children,
 	onClick,
-  activated,
-  name,
+	activated,
+	name,
+	isHover,
 	}) => {
     
     return (
       activated ? 
       <Box
         id='neonShadow'
-        as={motion.div}
-        animation={animationTabSelection}
+		boxShadow='rgba(0, 26, 255, 0.5) 0px -2px 0px, rgba(255, 255, 255, 0.5) 0px -4px 0px, rgba(255, 255, 255, 0.1) 0px -8px 0px, rgba(255, 255, 255, 0.1) 0px -16px 8px, rgba(255, 255, 255, 0.1) 0px -32px 16px;'
         boxSizing='border-box'
-        background='linear-gradient(180deg, rgba(255,255,255,0.6026785714285714) 0%, rgba(78,116,176,0.6895133053221288) 3%, rgba(0,151,255,0.2497373949579832) 15%, rgba(0,151,255,0) 70%)'
         borderRadius="9px"
       >
         <button 
@@ -175,7 +181,8 @@ export const Tab: React.FC<TabProps> = ({
           color: color,
           borderRadius: "5px",
           width: "7vw",
-          paddingTop: "1.5vh"
+          paddingTop: "1.5vh",
+		  background: isHover ? 'linear-gradient(180deg, rgba(255,255,255,0.6026785714285714) 0%, rgba(78,116,176,0.6895133053221288) 3%, rgba(0,151,255,0.2497373949579832) 15%, rgba(0,151,255,0) 70%)' : '#070707',
         }}>{name}</button>
       </Box> 
       :
@@ -190,7 +197,10 @@ export const Tab: React.FC<TabProps> = ({
           color: color,
           borderRadius: "5px",
           width: "7vw",
-          paddingTop: "1.5vh"
+          paddingTop: "1.5vh",
+		  transition: '0.4s',
+		  boxShadow: isHover ? 'rgba(0, 26, 255, 1) 0px -2px 0px, rgba(255, 255, 255, 0.9) 0px -4px 0px, rgba(255, 255, 255, 0.2) 0px -8px 0px, rgba(255, 255, 255, 0.2) 0px -16px 8px, rgba(255, 255, 255, 0.1) 0px -32px 16px' : 'rgba(0, 26, 255, 0) 0px -2px 0px, rgba(255, 255, 255,0) 0px -4px 0px, rgba(255, 255, 255, 0) 0px -4px 0px, rgba(255, 255, 255, 0.0) 0px -16px 8px, rgba(255, 255, 255, 0.0) 0px -32px 16px',
+		  background: isHover ? 'linear-gradient(180deg, rgba(255,255,255,0.6026785714285714) 0%, rgba(78,116,176,0.6895133053221288) 3%, rgba(0,151,255,0.2497373949579832) 15%, rgba(0,151,255,0) 70%)' : '#070707',
         }}>{name}</button>
       </Box> 
     );
