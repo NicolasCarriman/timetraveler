@@ -1,16 +1,31 @@
-import { Box, BoxProps, keyframes, ContainerProps, Container } from "@chakra-ui/react";
+import { Box, BoxProps, keyframes, ContainerProps, Container, Text } from "@chakra-ui/react";
 import  React  from 'react';
-import { motion } from 'framer-motion';
 
+
+export const Letter: React.FC<{
+	value: string;
+}> = ({value}) => {
+	return(
+		<Text
+			fontSize='4vw'
+			lineHeight='20vh'
+			textShadow='0 0 5px #0400ff, 0 0 15px #0400ff, 0 0 20px #0400ff, 0 0 40px #0400ff, 0 0 60px #00c3ff, 0 0 10px #003cff, 0 0 98px #00c3ff;color: #e6e6ff;'
+			textAlign='center'
+			animation='blink 12s infinite'
+		>
+			{value}
+		</Text>
+	);
+}
 
 export const MainContainer: React.FC<ContainerProps> = (props) => (
     <Container
     boxShadow='dark-lg'
     variant='small'
-    h='70vh'
+    h='65vh'
     position='absolute'
-    top='10vh'
-    left='28.5vw'
+    top='18vh'
+    left='5vw'
     border='none'
     display='flex'
     flexDir='column'
@@ -28,7 +43,7 @@ export const NeonBox: React.FC<BoxProps> = (props) => {
         boxSizing='border-box'
         background='#070707'
         height='100%'
-        minH='70vh'
+        minH='65vh'
         display='flex'
         flexDirection='column'
         p='4'
@@ -44,24 +59,18 @@ interface ILoadingAreaProps {
     children?: React.ReactNode;
 }
 
-export const LoadingArea: React.FC<ILoadingAreaProps> = (props) => {
+export const LoadingAreaInvisible: React.FC<ILoadingAreaProps> = (props) => {
     return (
       <Box
         as='main'
         display='flex'
-        flexDirection='column'
+        flexDirection='row'
         justifyContent='center'
         alignItems='center'
         height='100%'
         flex='1'
-        overflow='auto'
-        borderRadius='12px'
-        border='solid'
-        borderWidth='1px'
-        borderColor='#0f1715'
-        boxShadow='1px 1px 2px #5e5e5e,
-            0px 0px 2px #5e5e5e'
-        padding='0'
+        padding='0vw'
+        overflow='hidden'
       >
         {props.children}
       </Box>
@@ -198,9 +207,9 @@ export const Tab: React.FC<TabProps> = ({
           borderRadius: "5px",
           width: "7vw",
           paddingTop: "1.5vh",
-		      transition: '0.4s',
-		      boxShadow: isHover ? 'rgba(0, 26, 255, 1) 0px -2px 0px, rgba(255, 255, 255, 0.9) 0px -4px 0px, rgba(255, 255, 255, 0.2) 0px -8px 0px, rgba(255, 255, 255, 0.2) 0px -16px 8px, rgba(255, 255, 255, 0.1) 0px -32px 16px' : 'rgba(0, 26, 255, 0) 0px -2px 0px, rgba(255, 255, 255,0) 0px -4px 0px, rgba(255, 255, 255, 0) 0px -4px 0px, rgba(255, 255, 255, 0.0) 0px -16px 8px, rgba(255, 255, 255, 0.0) 0px -32px 16px',
-		      background: isHover ? 'linear-gradient(180deg, rgba(255,255,255,0.6026785714285714) 0%, rgba(78,116,176,0.6895133053221288) 3%, rgba(0,151,255,0.2497373949579832) 15%, rgba(0,151,255,0) 70%)' : '#070707',
+		  transition: '0.4s',
+		  boxShadow: isHover ? 'rgba(0, 26, 255, 1) 0px -2px 0px, rgba(255, 255, 255, 0.9) 0px -4px 0px, rgba(255, 255, 255, 0.2) 0px -8px 0px, rgba(255, 255, 255, 0.2) 0px -16px 8px, rgba(255, 255, 255, 0.1) 0px -32px 16px' : 'rgba(0, 26, 255, 0) 0px -2px 0px, rgba(255, 255, 255,0) 0px -4px 0px, rgba(255, 255, 255, 0) 0px -4px 0px, rgba(255, 255, 255, 0.0) 0px -16px 8px, rgba(255, 255, 255, 0.0) 0px -32px 16px',
+		  background: isHover ? 'linear-gradient(180deg, rgba(255,255,255,0.6026785714285714) 0%, rgba(78,116,176,0.6895133053221288) 3%, rgba(0,151,255,0.2497373949579832) 15%, rgba(0,151,255,0) 70%)' : '#070707',
         }}>{name}</button>
       </Box> 
     );
