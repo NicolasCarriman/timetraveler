@@ -7,6 +7,8 @@ import { ModuleNavigationConfiguration } from './models/moduleNavigationConfig';
 import { MenuSelectorComponent } from './features/menuselector-component/MenuSelectorComponent';
 import { ModuleMenuSelectorConfiguration } from './models/moduleMenuSelectorConfig';
 import { ModuleCardConfiguration } from './models/moduleCardConfig';
+import { FormComponent } from './features/form-component/FormComponent';
+import { ModuleFormConfiguration } from './models/moduleFormConfig';
 import flag1 from "./theme/flags/hungary.png";
 import flag2 from "./theme/flags/european-union.png";
 import flag3 from "./theme/flags/argentina.png";
@@ -62,6 +64,27 @@ const configurationMenuSelector: ModuleMenuSelectorConfiguration = {
   width: "95vw"
 }
 
+const configurationForm: ModuleFormConfiguration = {
+  accountId: "5ceeda5f-4cf3-4a01-b625-b5d56aed7046",
+  themeColor: {
+    cyan: 0,
+    red: 0,
+    blue: 0
+  },
+  themeBackgroundColor: {
+    cyan: 0,
+    red: 0,
+    blue: 0
+  },
+  animationsMode: true,
+  inputText: "Input Email",
+  buttonText: "N E X T",
+  httpRequestUrl: "http://www.timetraveler.com/login",
+  neonTitle: "Time Traveler",
+  height: "65vh",
+  width: "50vw"
+}
+
 const configurationNavigation: ModuleNavigationConfiguration = {
   id: "5ceeda5f-4cf3-4a01-b625-b5d56aed7046",
   activeComponentName: "overview",
@@ -91,7 +114,7 @@ function App() {
     <ChakraProvider
       theme={theme}
     >
-      <MenuSelectorComponent config={configurationMenuSelector} cards={[configurationCard, configurationCard2, configurationCard3, configurationCard4, configurationCard5]}/>
+      <FormComponent config={configurationForm}/>
     </ChakraProvider>
   );
 }

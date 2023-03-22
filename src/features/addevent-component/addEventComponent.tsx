@@ -22,18 +22,21 @@ export const AddEventComponent: React.FC<AddEventProps> = (
                 left="0vw" 
                 top="-1vh" 
                 width="18vw"
+                placeholder="Input event name"
             />
             <InputField 
                 type="date" 
                 left="11vw" 
                 top="5vh" 
                 width="11vw"
+                placeholder="Input event name"
             />
             <InputField 
                 type="date" 
                 left="-11vw" 
                 top="0vh" 
                 width="11vw"
+                placeholder="Input event name"
             />
         </>
     )
