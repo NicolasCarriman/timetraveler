@@ -5,8 +5,9 @@ export const InputField: React.FC<{
     type: string; 
     left: string; 
     top: string; 
-    width: string
-}> = ({type, left, top, width}) => {
+    width: string;
+    placeholder?: string;
+}> = ({type, left, top, width, placeholder}) => {
 
     return (
         <Input
@@ -24,7 +25,7 @@ export const InputField: React.FC<{
             borderBottom= "1px solid gray"
             color= "white"
             _placeholder={{ color: "gray.100" }}
-            placeholder="Input event name"
+            placeholder={placeholder == undefined ? "Input text" : placeholder}
         />
     )
 }
