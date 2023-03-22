@@ -80,7 +80,7 @@ const configurationForm: ModuleFormConfiguration = {
   inputText: "Input Email",
   buttonText: "N E X T",
   httpRequestUrl: "http://www.timetraveler.com/login",
-  neonTitle: "Time Traveler",
+  neonTitle: "Enter your e-mail",
   height: "65vh",
   width: "50vw"
 }

@@ -5,7 +5,7 @@ import {
     MainContainer,
     InputContainer,
     LoadingAreaInvisible,
-    Letter,
+    TipMessage,
     InputField,
     ButtonAura,
     LetterAnimation,
@@ -39,7 +39,7 @@ export const FormComponent: React.FC<FormProps> = (
     };
     return (
         <>
-            <Letter value={configuration.neonTitle}/>
+            <TipMessage value={configuration.neonTitle}/>
             <MainContainer
                 maxWidth='50vw'
                 height={configuration.height}

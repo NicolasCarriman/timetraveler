@@ -3,17 +3,17 @@ import { motion } from "framer-motion";
 import  React  from 'react';
 
 
-export const Letter: React.FC<{
+export const TipMessage: React.FC<{
 	value: string;
 }> = ({value}) => {
 	return(
 		<Text
 			fontSize='4vw'
 			lineHeight='35vh'
-			textShadow='0 0 5px #0400ff, 0 0 15px #0400ff, 0 0 20px #0400ff, 0 0 40px #0400ff, 0 0 60px #00c3ff, 0 0 10px #003cff, 0 0 98px #00c3ff;color: #e6e6ff;'
+			color='rgba(200,200,255, 0.2)'
 			textAlign='center'
-			animation='blink 12s infinite'
-			fontFamily= 'Alkatra'
+			fontFamily= 'Space Grotesk'
+			fontStyle='italic'
 		>
 			{value}
 		</Text>
@@ -30,6 +30,7 @@ export const MainContainer: React.FC<ContainerProps> = (props) => (
 		display='flex'
 		flexDir='column'
 		p='0'
+		fontFamily= 'Space Grotesk'
     	{...props}
     />
 );
@@ -56,6 +57,7 @@ export const LetterAnimation: React.FC<{
 			animation={isHover ? animationMoveLetters : "none"}
 			userSelect='none'
 			spellCheck='false'
+			fontFamily= 'Space Grotesk'
 		>
 			{value}
 		</Text>
