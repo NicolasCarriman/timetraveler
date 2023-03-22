@@ -7,12 +7,12 @@ export const Letter: React.FC<{
 }> = ({value}) => {
 	return(
 		<Text
-			fontSize='4vw'
-			lineHeight='20vh'
-			textShadow='0 0 5px #0400ff, 0 0 15px #0400ff, 0 0 20px #0400ff, 0 0 40px #0400ff, 0 0 60px #00c3ff, 0 0 10px #003cff, 0 0 98px #00c3ff;color: #e6e6ff;'
-			textAlign='center'
-			animation='blink 12s infinite'
-      fontFamily= 'Alkatra'
+      fontSize='4vw'
+      lineHeight='25vh'
+      color='rgba(200,200,255, 0.2)'
+      textAlign='center'
+      fontFamily= 'Space Grotesk'
+      fontStyle='italic'
 		>
 			{value}
 		</Text>

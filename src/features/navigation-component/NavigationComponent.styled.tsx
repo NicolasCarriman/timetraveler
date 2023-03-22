@@ -23,20 +23,20 @@ export const MainContainer: React.FC<ContainerProps> = (props) => (
 export const NeonBox: React.FC<BoxProps> = (props) => {
     return (
         <Box
-        id='neonShadow'
-        boxShadow='rgba(0, 26, 255, 0.5) 0px 2px 0px, rgba(255, 255, 255, 0.5) 0px 4px 0px, rgba(255, 255, 255, 0.1) 0px 8px 0px, rgba(255, 255, 255, 0.1) 0px 16px 8px, rgba(255, 255, 255, 0.1) 0px 32px 16px'
-        boxSizing='border-box'
-        background='#070707'
-        height='100%'
-        minH='70vh'
-        display='flex'
-        flexDirection='column'
-        p='4'
-        borderRadius='8px'
-        {...props}
-      >
-        {props.children}
-      </Box>
+          id='neonShadow'
+          boxShadow='rgba(0, 26, 255, 0.5) 0px 2px 0px, rgba(255, 255, 255, 0.5) 0px 4px 0px, rgba(255, 255, 255, 0.1) 0px 8px 0px, rgba(255, 255, 255, 0.1) 0px 16px 8px, rgba(255, 255, 255, 0.1) 0px 32px 16px'
+          boxSizing='border-box'
+          background='#070707'
+          height='100%'
+          minH='70vh'
+          display='flex'
+          flexDirection='column'
+          p='4'
+          borderRadius='8px'
+          {...props}
+        >
+          {props.children}
+        </Box>
     )
 };
 
@@ -131,6 +131,7 @@ export const Arrow: React.FC<ArrowProps> = ({
 export const TabContainer: React.FC<BoxProps> = (props) => {
   return(
     <Container
+      fontFamily= 'Space Grotesk'
       display='flex'
       flexDirection='row'
       minH='5vh'
