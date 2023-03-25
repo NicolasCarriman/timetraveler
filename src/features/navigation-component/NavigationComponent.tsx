@@ -159,16 +159,22 @@ export const NavigationComponent: React.FC<NavigationProps> = (
                             <Tab onClick={() => changeTab("overview")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "overview" ? true : false} isHover={isHoverTab == 0 ? true : false} name="Overview"/>
                         </div>
                         <div
+                            onMouseEnter={() => handleMouseEnterTab(3)}
+                            onMouseLeave={handleMouseLeaveTab}
+                        >
+                            <Tab onClick={() => changeTab("addevent")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "addevent" ? true : false} isHover={isHoverTab == 3 ? true : false} name="Journal"/>
+                        </div>
+                        <div
                             onMouseEnter={() => handleMouseEnterTab(1)}
                             onMouseLeave={handleMouseLeaveTab}
                         >
-                            <Tab onClick={() => changeTab("addevent")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "addevent" ? true : false} isHover={isHoverTab == 1 ? true : false} name="Activities"/>
+                            <Tab onClick={() => changeTab("list")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "list" ? true : false} isHover={isHoverTab == 1 ? true : false} name="Activities"/>
                         </div>
                         <div
                             onMouseEnter={() => handleMouseEnterTab(2)}
                             onMouseLeave={handleMouseLeaveTab}
                         >
-                            <Tab onClick={() => changeTab("note")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "note" ? true : false} isHover={isHoverTab == 2 ? true : false} name="Notes"/>
+                            <Tab onClick={() => changeTab("note")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "note" ? true : false} isHover={isHoverTab == 2 ? true : false} name="Info"/>
                         </div>
                     </TabContainer> : null
                 }

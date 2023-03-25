@@ -14,4 +14,20 @@ export const theme = extendTheme({
 /*
 OLD STYLE:
 bg: ' radial-gradient(at bottom left, rgba(154,47,147,1) 10%, rgba(95,42,120,1) 23%, rgba(21,14,35,1) 75%)',
+
+White: 
+  cyan: 0,
+  red: 0,
+  blue: 0
+
+Red: 
+  cyan: 0,
+  red: 0,
+  blue: 0
+
+Blue:
+  cyan: 0,
+  red: 0,
+  blue: 0
+
 */

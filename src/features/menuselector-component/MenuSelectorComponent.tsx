@@ -35,7 +35,7 @@ export const MenuSelectorComponent: React.FC<MenuSelectorProps> = (
     };
     return (
         <>
-            <Letter value={"Choose your itinerary"}/>
+            <Letter value={"Choose your destiny"}/>
             <MainContainer
                 maxWidth='90vw'
                 height={configuration.height}
