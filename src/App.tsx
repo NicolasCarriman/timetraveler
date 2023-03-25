@@ -1,19 +1,26 @@
 import React from 'react';
 import './App.css';
-import { Box, ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from './theme/theme';
 import { NavigationComponent } from './features/navigation-component/NavigationComponent';
+import { TimeLineComponent } from './features/timeline-component/TimeLineComponent';
 import { ModuleNavigationConfiguration } from './models/moduleNavigationConfig';
 import { MenuSelectorComponent } from './features/menuselector-component/MenuSelectorComponent';
 import { ModuleMenuSelectorConfiguration } from './models/moduleMenuSelectorConfig';
 import { ModuleCardConfiguration } from './models/moduleCardConfig';
 import { FormComponent } from './features/form-component/FormComponent';
 import { ModuleFormConfiguration } from './models/moduleFormConfig';
+import { dayConfiguration, ModuleTimeLineConfiguration } from './models/moduleTimeLineConfig';
 import flag1 from "./theme/flags/hungary.png";
 import flag2 from "./theme/flags/france.png";
 import flag3 from "./theme/flags/germany.png";
 import flag4 from "./theme/flags/czech-republic.png";
 import flag5 from "./theme/flags/united-kingdom.png";
+import iconAirplane from "./theme/icons/airplane.png";
+import iconHotel from "./theme/icons/hotel.png";
+import iconActivity from "./theme/icons/activity.png";
+import iconBus from "./theme/icons/bus.png";
+import iconTrain from "./theme/icons/train.png";
 
 const configurationCard: ModuleCardConfiguration = {
   title: "Hungary",
@@ -108,6 +115,69 @@ const configurationNavigation: ModuleNavigationConfiguration = {
   width: "37vw"
 }
 
+const configurationTimeLine: ModuleTimeLineConfiguration = {
+  timeLineId: "5ceeda5f-4cf3-4a01-b625-b5d56aed7046",
+  startDate: new Date("2022-05-1"),
+  endDate: new Date("2022-05-4"),
+  themeColor: {
+    cyan: 0,
+    red: 0,
+    blue: 0
+  },
+  themeBackgroundColor: {
+    cyan: 0,
+    red: 0,
+    blue: 0
+  },
+  animationsMode: true,
+  editMode: false,
+  height: "95vh",
+  width: "90vw"
+}
+
+const day1: dayConfiguration = {
+  events: [
+    {  
+      type: "transport",
+      hoverText: "You arrived at Aeropuerto de Budapest-Ferenc Liszt (Budapest Airport)",
+      icon: iconAirplane,
+      date: new Date("2022-05-1")
+    },
+    {
+      type: "hotel",
+      hoverText: "You must go to Corinthia Budapest at Erzsébet krt. 43-49, 1073",
+      icon: iconHotel,
+      date: new Date("2022-05-1")
+    }
+  ]
+
+}
+
+const day2: dayConfiguration = {
+  events: [
+    {  
+      type: "activity",
+      hoverText: "Széchenyi Spa Full Day with Optional Pálinka Tour",
+      icon: iconActivity,
+      date: new Date("2022-05-2")
+    }
+  ]
+}
+
+const day3: dayConfiguration = {
+  events: []
+}
+
+const day4: dayConfiguration = {
+  events: [
+    {  
+      type: "transport",
+      hoverText: "You will go to Budapest Nepliget bus station.",
+      icon: iconBus,
+      date: new Date("2022-05-4")
+    }
+  ]
+}
 
 function App() {
 
@@ -119,6 +189,8 @@ function App() {
             return <NavigationComponent config={configurationNavigation} />;
         case 'menuselector':
             return <MenuSelectorComponent config={configurationMenuSelector} cards={[configurationCard, configurationCard2, configurationCard3, configurationCard4, configurationCard5]}/>;
+        case 'timeline':
+            return <TimeLineComponent config={configurationTimeLine} days={[day1, day2, day3, day4]}/>;
         default:
             return <MenuSelectorComponent config={configurationMenuSelector} cards={[configurationCard, configurationCard2, configurationCard3, configurationCard4, configurationCard5]}/>;
     }
@@ -128,7 +200,7 @@ function App() {
       theme={theme}
     >
       {
-          componentToRender("menuselector")
+          componentToRender("timeline")
       }
     </ChakraProvider>
   );
