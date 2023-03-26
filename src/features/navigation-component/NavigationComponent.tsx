@@ -11,6 +11,7 @@ import {
     Tab,
     TabContainer,
 } from "./NavigationComponent.styled";
+import { ModuleOverviewConfiguration } from "../../models/moduleOverviewConfig";
 
 
 
@@ -26,16 +27,40 @@ export const NavigationComponent: React.FC<NavigationProps> = (
         config,
     );
 
+    let array = configuration.overviewComponent;
+    
+    const [currentOverview, setOverview] = React.useState(configuration.overviewComponent[configuration.activeCard]);
+    let index = array.findIndex((props) => (props === currentOverview))
+    const prev = () => {
+        let prevIndex = array.findIndex((props) => (props === currentOverview)) - 1
+        if (prevIndex < 0) {
+            console.log("menor a cero")
+            return;
+        }
+        setOverview(array[prevIndex])
+    }
+    const next = () => {
+        let nextIndex = array.findIndex((props) => (props === currentOverview)) + 1
+        if (nextIndex >= array.length) {
+            return;
+        }
+        setOverview(array[nextIndex])
+    }
+
+
     const componentToRender = (componentName: string, cardId: number) => {
         switch(componentName) {
             case 'activity':
                 return <ListComponent config={configuration.activityComponent[cardId]} currentSlide={0}/>;
             case 'info':
                 return <ListComponent config={configuration.infoComponent[cardId]} currentSlide={0}/>;
+            case 'overview':
+                return <OverviewComponent config={currentOverview} currentSlide={0}/>;
             default:
-                return <OverviewComponent config={configuration.overviewComponent[cardId]} currentSlide={0}/>;
+                return <OverviewComponent config={currentOverview} currentSlide={0}/>;
         }
     }
+
     const [isHoverArrowLeft, setIsHoverArrowLeft] = useState(false);
 
     const handleMouseEnterArrowLeft = () => {
@@ -68,13 +93,13 @@ export const NavigationComponent: React.FC<NavigationProps> = (
     return (
         <>
             {
-                configuration.rightArrow && configuration.activeCard < (configuration.overviewComponent.length - 1) ?
+                configuration.rightArrow && index < (configuration.overviewComponent.length - 1) ?
                 <div
                     onMouseEnter={handleMouseEnterArrowRight}
                     onMouseLeave={handleMouseLeaveArrowRight}
                 >
                     <Arrow 
-                        onClick={() => changeCard(configuration.activeCard + 1)}
+                        onClick={() => next()}
                         color="white"
                         top="12vh"
                         left="70vw"
@@ -87,13 +112,13 @@ export const NavigationComponent: React.FC<NavigationProps> = (
                 : null
             }
             {
-                configuration.leftArrow && configuration.activeCard > 0 ?
+                configuration.leftArrow && index > 0 ?
                 <div
                     onMouseEnter={handleMouseEnterArrowLeft}
                     onMouseLeave={handleMouseLeaveArrowLeft}
                 >
                     <Arrow 
-                        onClick={() => changeCard(configuration.activeCard - 1)}
+                        onClick={() => prev()}
                         color="white" 
                         top="12vh"
                         left="22vw"

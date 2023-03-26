@@ -26,8 +26,7 @@ export const useNavigation = (
 		setConfiguration({...configuration, activeComponentName: tabName})
 	};
 	const changeCard = (cardId: number) => {
-		console.log("activeCard: " + configuration.activeCard)
-		setConfiguration({...configuration, activeCard: cardId, activeComponentName: "overview"})
+		setConfiguration({...configuration, activeCard: cardId})
 		
 	};
     return {

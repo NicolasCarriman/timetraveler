@@ -23,12 +23,12 @@ export const OverviewComponent: React.FC<OverviewProps> = (
     return (
         <>
             <BannerContainer>
-                <HeaderBanner imageUrl={configuration.images[currentSlideSelected]} />
+                <HeaderBanner imageUrl={config.images[currentSlideSelected]} />
             </BannerContainer>
             <InputContainer>
                 <TextArea 
                     width="36vw"
-                    value={configuration.textArea}
+                    value={config.textArea}
                 />
             </InputContainer>
         </>
