@@ -1,4 +1,3 @@
-import { propNames } from "@chakra-ui/react";
 import React from "react";
 import { ModuleNavigationConfiguration } from "../models/moduleNavigationConfig";
 
@@ -8,28 +7,32 @@ export const useNavigation = (
 
     const [configuration, setConfiguration] = React.useState(
         {
-			id: config.id,
 			activeComponentName: config.activeComponentName,
-			themeColor: config.themeColor,
-			themeBackgroundColor: config.themeBackgroundColor,
-			animationsMode: config.animationsMode,
-			editMode: config.editMode,
+			activeCard: config.activeCard,
 			leftArrow: config.leftArrow,
 			rightArrow: config.rightArrow,
 			tabPanel: config.tabPanel,
 			tabSelection: config.tabSelection,
 			height: config.height,
-			width: config.width
+			width: config.width,
+			overviewComponent: config.overviewComponent,
+			activityComponent: config.activityComponent,
+			journalComponent: config.journalComponent,
+			infoComponent: config.infoComponent,
         }
     );
 
-	const changeTab = (asd: string) => {
-
-		setConfiguration({...configuration, activeComponentName: asd})
+	const changeTab = (tabName: string) => {
+		setConfiguration({...configuration, activeComponentName: tabName})
 	};
-	
+	const changeCard = (cardId: number) => {
+		console.log("activeCard: " + configuration.activeCard)
+		setConfiguration({...configuration, activeCard: cardId, activeComponentName: "overview"})
+		
+	};
     return {
 		changeTab,
+		changeCard,
 		configuration
     }
 }

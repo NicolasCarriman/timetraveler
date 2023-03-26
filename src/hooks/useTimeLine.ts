@@ -1,9 +1,8 @@
 import React from "react";
-import { dayConfiguration, ModuleTimeLineConfiguration } from "../models/moduleTimeLineConfig";
+import { ModuleTimeLineConfiguration } from "../models/moduleTimeLineConfig";
 
 export const useTimeLine = (
     config: ModuleTimeLineConfiguration,
-	daysToRender: dayConfiguration[]
 ) => {
 
     const [configuration, setConfiguration] = React.useState(
@@ -11,10 +10,7 @@ export const useTimeLine = (
 			timeLineId: config.timeLineId,
 			startDate: config.startDate,
 			endDate: config.endDate,
-			themeColor: config.themeColor,
-			themeBackgroundColor: config.themeBackgroundColor,
-			animationsMode: config.animationsMode,
-			editMode: config.editMode,
+			days: config.days,
 			height: config.height,
 			width: config.width
         }
@@ -22,6 +18,5 @@ export const useTimeLine = (
 
     return {
 		configuration,
-		daysToRender
     }
 }

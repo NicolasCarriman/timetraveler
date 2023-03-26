@@ -16,16 +16,14 @@ import {
 } from "./listComponent.styled";
 
 interface ListProps {
-  imagesUrl: string[]
   config: ModuleListConfiguration
   currentSlide: number
 }
 
 export const ListComponent: React.FC<ListProps> = (
-  { imagesUrl = [], config, currentSlide }
+  { config, currentSlide }
 ) => {
-  const { images, configuration, currentSlideSelected } = useList(
-    imagesUrl,
+  const { configuration, currentSlideSelected } = useList(
     config,
     currentSlide,
   );
@@ -40,9 +38,9 @@ export const ListComponent: React.FC<ListProps> = (
   return (
     <>
       {
-        configuration.bannerActivated && images ?
+        configuration.bannerActivated && configuration.images ?
           <BannerContainer>
-            <HeaderBanner imageUrl={images[currentSlideSelected]} />
+            <HeaderBanner imageUrl={configuration.images[currentSlideSelected]} />
           </BannerContainer>
           : null
       }

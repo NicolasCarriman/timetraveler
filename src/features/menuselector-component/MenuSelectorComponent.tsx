@@ -9,19 +9,16 @@ import {
     Letter,
 } from "./MenuSelectorComponent.styled";
 
-import { ModuleCardConfiguration } from "../../models/moduleCardConfig";
-
 interface MenuSelectorProps {
     config: ModuleMenuSelectorConfiguration
-    cards: ModuleCardConfiguration[]
+    handlerCard: (id: number) => void
 }
 
 export const MenuSelectorComponent: React.FC<MenuSelectorProps> = (
-    { config, cards }
+    { config, handlerCard }
 ) => {
-    const { configuration, cardsToRender } = useMenuSelector(
+    const { configuration } = useMenuSelector(
         config,
-        cards
     );
 
     const [isHoverCard, setIsHoverCard] = useState(-1);
@@ -33,6 +30,7 @@ export const MenuSelectorComponent: React.FC<MenuSelectorProps> = (
     const handleMouseLeaveCard = () => {
         setIsHoverCard(-1);
     };
+
     return (
         <>
             <Letter value={"Choose your destiny"}/>
@@ -44,12 +42,13 @@ export const MenuSelectorComponent: React.FC<MenuSelectorProps> = (
                 <NeonBox>
                     <LoadingAreaInvisible>
                         {
-                            cardsToRender.map((e, i) => (
+                            configuration.cards.map((e, i) => (
                                 <div
                                     onMouseEnter={() => handleMouseEnterCard(i)}
                                     onMouseLeave={handleMouseLeaveCard}
+                                    onClick={() => handlerCard(i)}
                                 >
-                                    <CardComponent config={cardsToRender[i]} isHover={isHoverCard == i ? true : false} somethingIsSelected={isHoverCard != -1 ? true : false}/>
+                                    <CardComponent config={configuration.cards[i]} isHover={isHoverCard == i ? true : false} somethingIsSelected={isHoverCard != -1 ? true : false}/>
                                 </div>
                             ))
                         }

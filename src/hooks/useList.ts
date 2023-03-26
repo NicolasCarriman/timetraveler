@@ -3,7 +3,6 @@ import { Activity } from "../models/activity";
 import { ModuleListConfiguration } from "../models/moduleListConfig";
 
 export const useList = (
-    imagesUrl: string[],
     config: ModuleListConfiguration,
     currentSlide: number,
   ) => {
@@ -11,11 +10,12 @@ export const useList = (
   const [configuration, setConfiguration] = React.useState(
     {
       bannerActivated: config.bannerActivated,
-      carrousel: config.carrousel
+      carrousel: config.carrousel,
+      images: config.images
     }
   );
     
-  const [images, setImages] = React.useState<string[]>(imagesUrl);
+  const [images, setImages] = React.useState<string[]>(configuration.images);
   const [currentSlideSelected, setCurrentSlide] = React.useState(0);
 
 
@@ -41,7 +41,6 @@ export const useList = (
   */
 
   return {
-    images,
     currentSlideSelected,
     configuration,
   }

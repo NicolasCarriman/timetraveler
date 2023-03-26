@@ -76,7 +76,6 @@ export const Mask: React.FC<{isActive: boolean}> = (props) => {
 };
 
 export const CardArea: React.FC<{config: ModuleCardConfiguration}> = (props) => {
-	console.log(props.config.maskActive);
     return (
 		props.config.imgUrl ?         
 		<Box

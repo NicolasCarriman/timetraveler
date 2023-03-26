@@ -1,11 +1,15 @@
 import { ThemeColor } from './Theme';
 
+export type cardsType = {
+	title: string
+	textAreaValue: string
+	imgUrl: string
+	maskActive: boolean
+};
+
 export interface ModuleMenuSelectorConfiguration {
   accountId: string
-  themeColor: ThemeColor
-  themeBackgroundColor: ThemeColor
-  animationsMode: boolean
-  editMode: boolean
+  cards: cardsType[]
   height: string
   width: string
 }
