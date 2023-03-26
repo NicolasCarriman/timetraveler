@@ -9,23 +9,21 @@ import {
 } from "./OverviewComponent.styled";
 
 interface OverviewProps {
-    imagesUrl: string[]
     config: ModuleOverviewConfiguration
     currentSlide: number
 }
 
 export const OverviewComponent: React.FC<OverviewProps> = (
-    { imagesUrl = [], config, currentSlide }
+    { config, currentSlide }
 ) => {
-    const { images, configuration, currentSlideSelected } = useOverview(
-        imagesUrl,
+    const { configuration, currentSlideSelected } = useOverview(
         config,
         currentSlide,
     );
     return (
         <>
             <BannerContainer>
-                <HeaderBanner imageUrl={images[currentSlideSelected]} />
+                <HeaderBanner imageUrl={configuration.images[currentSlideSelected]} />
             </BannerContainer>
             <InputContainer>
                 <TextArea 

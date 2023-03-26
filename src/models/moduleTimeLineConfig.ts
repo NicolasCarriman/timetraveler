@@ -1,5 +1,3 @@
-import { ThemeColor } from './Theme';
-
 export type dayConfiguration = {
 	events: pointConfiguration[]
 };
@@ -15,10 +13,7 @@ export interface ModuleTimeLineConfiguration {
   timeLineId: string
   startDate: Date
   endDate: Date
-  themeColor: ThemeColor
-  themeBackgroundColor: ThemeColor
-  animationsMode: boolean
-  editMode: boolean
+  days: dayConfiguration[]
   height: string
   width: string
 }

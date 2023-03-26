@@ -2,7 +2,6 @@ import React from "react";
 import { ModuleOverviewConfiguration } from "../models/moduleOverviewConfig";
 
 export const useOverview = (
-    imagesUrl: string[],
     config: ModuleOverviewConfiguration,
     currentSlide: number,
 ) => {
@@ -10,10 +9,11 @@ export const useOverview = (
     const [configuration, setConfiguration] = React.useState(
         {
           textArea: config.textArea,
+          images: config.images
         }
     );
     
-    const [images, setImages] = React.useState<string[]>(imagesUrl);
+    const [images, setImages] = React.useState<string[]>(configuration.images);
     const [currentSlideSelected, setCurrentSlide] = React.useState(0);
 
     let switchImages = () => {
@@ -31,6 +31,7 @@ export const useOverview = (
           clearInterval(sliderInterval);
         };
     });
+
     /*
     const getImgUrl = () => {
         if(imgUrl){
@@ -53,7 +54,6 @@ export const useOverview = (
     }, []);
     */
     return {
-        images,
         currentSlideSelected,
         configuration,
     }

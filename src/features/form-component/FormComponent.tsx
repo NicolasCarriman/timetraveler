@@ -13,11 +13,12 @@ import {
 
 
 interface FormProps {
-    config: ModuleFormConfiguration
+    config: ModuleFormConfiguration;
+    handler: (componentName: string) => void;
 }
 
 export const FormComponent: React.FC<FormProps> = (
-    { config }
+    { config, handler }
 ) => {
     const { configuration } = useForm(
         config,
@@ -26,6 +27,7 @@ export const FormComponent: React.FC<FormProps> = (
 
     const sendFormRequest = () => {
         console.log("Button Clicked, must send http request");
+        handler("menuselector")
     };
 
     const [isHover, setIsHover] = useState(false);
