@@ -1,15 +1,6 @@
-import { ThemeColor } from './Theme';
-
-export type cardsType = {
-	title: string
-	textAreaValue: string
-	imgUrl: string
-	maskActive: boolean
-};
+import { ModuleCardConfiguration } from "./moduleCardConfig"
 
 export interface ModuleMenuSelectorConfiguration {
-  accountId: string
-  cards: cardsType[]
-  height: string
-  width: string
+  itineraryId: string
+  cards: ModuleCardConfiguration[]
 }

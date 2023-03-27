@@ -27,6 +27,18 @@ export const FormComponent: React.FC<FormProps> = (
 
     const sendFormRequest = () => {
         console.log("Button Clicked, must send http request");
+        /*
+         If we use this to load the itinerary, we must send a GET http request to: /itinerary?={itineraryId}
+         It must retrieve this data:
+         {
+            itineraryId: "5ceeda5f-4cf3-4a01-b625-b5d56aed7046"
+            cards: [cards data array]
+         }
+         If we use this to login, we must send a POST http request to: /login 
+         and redirect the user to Dashboard component if pass and user is valid.
+         
+         We must include a loading animation.
+        */
         handler("menuselector")
     };
 
@@ -41,10 +53,10 @@ export const FormComponent: React.FC<FormProps> = (
     };
     return (
         <>
-            <TipMessage value={configuration.neonTitle}/>
+            <TipMessage value={configuration.title}/>
             <MainContainer
                 maxWidth='50vw'
-                height={configuration.height}
+                height='65vh'
                 mt='8'
             >
                 <LoadingAreaInvisible>
