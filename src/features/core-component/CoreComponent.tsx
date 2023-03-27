@@ -372,50 +372,40 @@ const configurationNavigation: ModuleNavigationConfiguration = {
   infoComponent: [budapestList, paristList, berlinList, pragueList, londonList]
 }
 const configurationMenuSelector: ModuleMenuSelectorConfiguration = {
-    accountId: "5ceeda5f-4cf3-4a01-b625-b5d56aed7046",
+    itineraryId: "5ceeda5f-4cf3-4a01-b625-b5d56aed7046",
     cards: [
         {
             title: "Hungary",
-            textAreaValue: "Budapest is the capital and most populous city of Hungary. It is the ninth-largest city in the European Union by population within city limits and the second-largest city on the Danube river; the city has an estimated population of 1,752,286 over a land area of about 525 square kilometers (203 square miles). Budapest, which is both a city and county, forms the center of the Budapest metropolitan area, which has an area of 7,626 square kilometers (2,944 square miles) and a population of 3,303,786; it is a primate city, constituting 33% of the population of Hungary.",
             imgUrl: flag1,
             maskActive: false
         },
         {
             title: "France",
-            textAreaValue: "Austria, Belgium, Bulgaria, Croatia, Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain and Sweden.",
             imgUrl: flag2,
             maskActive: false
         },
         {
             title: "Germany",
-            textAreaValue: "Budapest is the capital and most populous city of Hungary. It is the ninth-largest city in the European Union by population within city limits and the second-largest city on the Danube river; the city has an estimated population of 1,752,286 over a land area of about 525 square kilometers (203 square miles). Budapest, which is both a city and county, forms the center of the Budapest metropolitan area, which has an area of 7,626 square kilometers (2,944 square miles) and a population of 3,303,786; it is a primate city, constituting 33% of the population of Hungary.",
             imgUrl: flag3,
             maskActive: false,
         },
         {
             title: "Czech Republic",
-            textAreaValue: "Budapest is the capital and most populous city of Hungary. It is the ninth-largest city in the European Union by population within city limits and the second-largest city on the Danube river; the city has an estimated population of 1,752,286 over a land area of about 525 square kilometers (203 square miles). Budapest, which is both a city and county, forms the center of the Budapest metropolitan area, which has an area of 7,626 square kilometers (2,944 square miles) and a population of 3,303,786; it is a primate city, constituting 33% of the population of Hungary.",
             imgUrl: flag4,
             maskActive: false,
         },
         {
             title: "United Kingdom",
-            textAreaValue: "Budapest is the capital and most populous city of Hungary. It is the ninth-largest city in the European Union by population within city limits and the second-largest city on the Danube river; the city has an estimated population of 1,752,286 over a land area of about 525 square kilometers (203 square miles). Budapest, which is both a city and county, forms the center of the Budapest metropolitan area, which has an area of 7,626 square kilometers (2,944 square miles) and a population of 3,303,786; it is a primate city, constituting 33% of the population of Hungary.",
             imgUrl: flag5,
             maskActive: false,
         },
-    ],
-    height: "65vh",
-    width: "95vw"
+    ]
 }
 const configurationForm: ModuleFormConfiguration = {
-  accountId: "5ceeda5f-4cf3-4a01-b625-b5d56aed7046",
   inputText: "Input itinerary ID",
   buttonText: "N E X T",
   httpRequestUrl: "http://www.timetraveler.com/itinerary?id=5ceeda5f-4cf3-4a01-b625-b5d56aed7046",
-  neonTitle: "Load your itinerary",
-  height: "65vh",
-  width: "50vw"
+  title: "Load your itinerary",
 }
 
 interface CoreProps {
@@ -428,26 +418,22 @@ export const CoreComponent: React.FC<CoreProps> = (
     const { loadComponent, loadCard, configuration } = useCore(
         config,
     );
-    const [isOpenTimeLine, setIsOpenTimeLine] = React.useState(false);
+
 	React.useEffect(() => {
 		console.log("selectedCard: " + configuration.selectedCard)
 		if (configuration.selectedCard != -1) {
 			loadComponent("navigation")
 		}
 	}, [configuration.selectedCard])
-
-    const closeTimeLineModal = () => {
-        setIsOpenTimeLine(false);
-    };
     
     const componentToRender = (componentName: string) => {
         switch(componentName) {
             case 'form':
                 return <FormComponent config={configurationForm} handler={loadComponent}/>;
-            case 'navigation':
-                return <NavigationComponent config={{...configurationNavigation, activeCard: configuration.selectedCard}} handler={loadComponent}/>;
             case 'menuselector':
                 return <MenuSelectorComponent config={configurationMenuSelector} handlerCard={loadCard}/>;
+            case 'navigation':
+                return <NavigationComponent config={{...configurationNavigation, activeCard: configuration.selectedCard}} handler={loadComponent}/>;
             case 'timeline':
                 return <TimeLineComponent config={configurationNavigation.journalComponent[configuration.selectedCard]} handler={loadComponent}/>;
             default:

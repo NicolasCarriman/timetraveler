@@ -1,4 +1,4 @@
-import { BoxProps, Container, Text, Textarea, Box } from "@chakra-ui/react";
+import { BoxProps, Container, Text, Box } from "@chakra-ui/react";
 
 import  React  from 'react';
 import { ModuleCardConfiguration } from "../../models/moduleCardConfig";
@@ -13,7 +13,6 @@ export const CardItem: React.FC<PassedProps> = (props) => {
   return(
 	
     <Container
-		color='white'
 		paddingTop='3vh'
 		marginLeft='1vw'
 		display='flex'
@@ -21,18 +20,15 @@ export const CardItem: React.FC<PassedProps> = (props) => {
 		boxShadow={props.isHover ? 'rgba(0, 26, 255, 1) 0px -2px 0px, rgba(255, 255, 255, 0.9) 0px -4px 0px, rgba(255, 255, 255, 0.2) 0px -8px 0px, rgba(255, 255, 255, 0.2) 0px -16px 8px, rgba(255, 255, 255, 0.1) 0px -32px 16px' : 'rgba(0, 26, 255, 0) 0px -2px 0px, rgba(255, 255, 255,0) 0px -4px 0px, rgba(255, 255, 255, 0) 0px -4px 0px, rgba(255, 255, 255, 0.0) 0px -16px 8px, rgba(255, 255, 255, 0.0) 0px -32px 16px'}
 		height='38vh'
 		width='30vh'
-		textAlign='center'
 		transition={props.isHover ? 'all 1000ms ease': 'none'}
 		opacity= {props.isHover ? '1' : '0.3' && props.somethingIsSelectedThenHide ? '0.3' : '0.7'}
-		verticalAlign='middle'
 		cursor='pointer'
 		transform={props.isHover ? 'perspective(21vw) rotateY(0deg)' : 'perspective(21vw) rotateY(35deg)'}
-		borderRadius='5%'
-		fontSize='1vw'
-		borderWidth={props.isHover ? '0.1vw': '0.05vw'}
+		borderRadius='2.3vh'
+		borderWidth={props.isHover ? '0.11vw': '0.11vw'}
 		borderColor={props.isHover ? 'rgba(209, 210, 255, 0.6)': 'rgba(255, 255, 255, 0.3)'}
 		borderStyle= 'solid'
-		backgroundColor={props.isHover ? 'rgb(20, 20, 20, 0)' : 'rgb(20, 20, 20)'}
+		backgroundColor={props.isHover ? 'rgb(20, 20, 20, 0)' : 'rgb(20, 20, 20, 1)'}
 	  {...props}
     />
     
@@ -49,7 +45,7 @@ export const CardTitle: React.FC<{
 			marginLeft ='0.5vw'
 			marginRight='0.5vw'
 			fontSize='1.2vw'
-			color='rgb(142, 143, 163)'
+			color='rgb(142, 143, 163, 1)'
 			backgroundImage='linear-gradient(rgb(245, 245, 245) 50% rgb(173, 173, 173) 50%)'
 			textAlign='center'
 		>
@@ -76,26 +72,14 @@ export const Mask: React.FC<{isActive: boolean}> = (props) => {
 };
 
 export const CardArea: React.FC<{config: ModuleCardConfiguration}> = (props) => {
-    return (
-		props.config.imgUrl ?         
+    return (       
 		<Box
-			h='50%'
+			height='50%'
 			width='50%'
 		>	
 			<img src={props.config.imgUrl} />
 	 		<Mask isActive={props.config.maskActive}/>
 		</Box>
-		:
-		<Textarea
-			fontSize='15px'
-			h='25vh'
-			overflow='hidden'
-			border='0'
-			textAlign='center'
-			resize= 'none'
-		>
-			{props.config.textAreaValue}
-		</Textarea>
     )
 }
 
