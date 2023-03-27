@@ -1,3 +1,5 @@
+import { ModuleHotelConfiguration } from "./moduleHotelConfig";
+
 export type dayConfiguration = {
 	events: pointConfiguration[]
 };
@@ -7,6 +9,7 @@ export type pointConfiguration = {
 	hoverText: string
 	icon: string
 	date: Date
+  component: ModuleHotelConfiguration
 };
 
 export interface ModuleTimeLineConfiguration {

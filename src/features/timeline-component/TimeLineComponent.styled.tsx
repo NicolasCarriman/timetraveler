@@ -1,4 +1,4 @@
-import { Box, BoxProps, ContainerProps, Container, keyframes, Button, ButtonProps } from "@chakra-ui/react";
+import { Box, BoxProps, ContainerProps, Container, keyframes, Button, ButtonProps, Text, background } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import  React  from 'react';
 import { pointConfiguration } from "../../models/moduleTimeLineConfig";
@@ -204,3 +204,67 @@ export const DescriptionNeonBox: React.FC<DescriptionNeonBoxProps> = (props) => 
     </Box>
   )
 };
+
+interface XButtonProps {
+  color?: string;
+  children?: React.ReactNode;
+  onClick: () => void;
+}
+export const XButton: React.FC<XButtonProps> = ({ 
+	color,
+	children,
+	onClick,
+}) => {
+  return (
+    <button 
+      onClick={onClick}
+      style={{
+        position: 'absolute',
+        color: 'white',
+        top:'42vh',
+        left: '-5vw',
+        background: 'transparent',
+        borderRadius: '10px',
+        borderStyle: 'solid',
+        borderWidth: '0px',
+        borderTop: '0px',
+        height: "10vh",
+        width: "5vw",
+        zIndex: "20",
+      }}
+    >
+      {children}
+    </button>
+  );
+};
+
+const animationMoveXLetterKeyframes = keyframes`
+0% {opacity: 0; color: rgba(200,200,255, 0.1);}
+100% { opacity: 1; color: rgba(200,200,255, 1);}
+`;
+const animationMoveXLetter = `${animationMoveXLetterKeyframes} 0.1s ease-in-out forwards`;
+
+
+export const XLetterAnimation: React.FC<{
+	value: string;
+	isHover: boolean;
+}> = ({value, isHover}) => {
+	return(
+		<Text
+			color= 'rgba(200,200,255, 0.3)'
+			fontSize='3vw'
+			position='absolute'
+      textAlign='center'
+			top='43vh'
+      left='-3.5vw'
+			as={motion.div}
+			animation={isHover ? animationMoveXLetter : "none"}
+			userSelect='none'
+			spellCheck='false'
+			fontFamily= 'Space Grotesk'
+      zIndex='10'
+		>
+			{value}
+		</Text>
+	);
+}
