@@ -31,28 +31,7 @@ export const useOverview = (
           clearInterval(sliderInterval);
         };
     });
-
-    /*
-    const getImgUrl = () => {
-        if(imgUrl){
-            const fetchBanner = async() => {
-                
-                try {
-                    const response = await fetch(imgUrl[0]);
-                    const data = await response.json();
-                    setImg(data.imgUrl);
-                } catch (error) {
-                    console.log(error)
-                };
-            };
-            fetchBanner();
-        }
-    }
-
-    React.useEffect(() => {
-        getImgUrl();
-    }, []);
-    */
+  
     return {
         currentSlideSelected,
         configuration,

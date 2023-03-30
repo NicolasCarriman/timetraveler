@@ -11,7 +11,8 @@ import {
     Tab,
     TabContainer,
 } from "./NavigationComponent.styled";
-import { ModuleOverviewConfiguration } from "../../models/moduleOverviewConfig";
+import { Box, HStack } from "@chakra-ui/react";
+import { Container } from "../../components/container";
 
 
 
@@ -28,7 +29,7 @@ export const NavigationComponent: React.FC<NavigationProps> = (
     );
 
     let array = configuration.overviewComponent;
-    
+
     const [currentOverview, setOverview] = React.useState(configuration.overviewComponent[configuration.activeCard]);
     let index = array.findIndex((props) => (props === currentOverview))
     const prev = () => {
@@ -49,15 +50,15 @@ export const NavigationComponent: React.FC<NavigationProps> = (
 
 
     const componentToRender = (componentName: string, cardId: number) => {
-        switch(componentName) {
+        switch (componentName) {
             case 'activity':
-                return <ListComponent config={configuration.activityComponent[cardId]} currentSlide={0}/>;
+                return <ListComponent config={configuration.activityComponent[cardId]} currentSlide={0} />;
             case 'info':
-                return <ListComponent config={configuration.infoComponent[cardId]} currentSlide={0}/>;
+                return <ListComponent config={configuration.infoComponent[cardId]} currentSlide={0} />;
             case 'overview':
-                return <OverviewComponent config={currentOverview} currentSlide={0}/>;
+                return <OverviewComponent config={currentOverview} currentSlide={0} />;
             default:
-                return <OverviewComponent config={currentOverview} currentSlide={0}/>;
+                return <OverviewComponent config={currentOverview} currentSlide={0} />;
         }
     }
 
@@ -66,7 +67,7 @@ export const NavigationComponent: React.FC<NavigationProps> = (
     const handleMouseEnterArrowLeft = () => {
         setIsHoverArrowLeft(true);
     };
-  
+
     const handleMouseLeaveArrowLeft = () => {
         setIsHoverArrowLeft(false);
     };
@@ -76,7 +77,7 @@ export const NavigationComponent: React.FC<NavigationProps> = (
     const handleMouseEnterArrowRight = () => {
         setIsHoverArrowRight(true);
     };
-  
+
     const handleMouseLeaveArrowRight = () => {
         setIsHoverArrowRight(false);
     };
@@ -85,93 +86,96 @@ export const NavigationComponent: React.FC<NavigationProps> = (
     const handleMouseEnterTab = (tabSelected: number) => {
         setIsHoverTab(tabSelected);
     };
-  
+
     const handleMouseLeaveTab = () => {
         setIsHoverTab(-1);
     };
-    
+
     return (
-        <>
-            {
-                configuration.rightArrow && index < (configuration.overviewComponent.length - 1) ?
-                <div
-                    onMouseEnter={handleMouseEnterArrowRight}
-                    onMouseLeave={handleMouseLeaveArrowRight}
-                >
-                    <Arrow 
-                        onClick={() => next()}
-                        color="white"
-                        top="12vh"
-                        left="70vw"
-                        orientation="right"
-                        isHoverArrowRight={isHoverArrowRight}
-                    >
-                        {'>'}
-                    </Arrow> 
-                </div>
-                : null
-            }
-            {
-                configuration.leftArrow && index > 0 ?
-                <div
-                    onMouseEnter={handleMouseEnterArrowLeft}
-                    onMouseLeave={handleMouseLeaveArrowLeft}
-                >
-                    <Arrow 
-                        onClick={() => prev()}
-                        color="white" 
-                        top="12vh"
-                        left="22vw"
-                        orientation="left"
-                        isHoverArrowLeft={isHoverArrowLeft}
-                    >
-                        {'<'}
-                    </Arrow> 
-                </div>
-                : null
-            }
+        <HStack
+            justifyContent='center'
+            alignItems='center'
+        >
             <MainContainer
-                maxWidth='40vw'
-                height={configuration.height}
-                mt='8'
+                maxWidth='60vw'
+                height='calc(100vh)'
+                margin='0'
             >
                 {
                     configuration.tabPanel ?
-                    <TabContainer>
-                        <div
-                            onMouseEnter={() => handleMouseEnterTab(0)}
-                            onMouseLeave={handleMouseLeaveTab}
-                        >
-                            <Tab onClick={() => changeTab("overview")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "overview" ? true : false} isHover={isHoverTab == 0 ? true : false} name="Overview"/>
-                        </div>
-                        <div
-                            onMouseEnter={() => handleMouseEnterTab(3)}
-                            onMouseLeave={handleMouseLeaveTab}
-                        >
-                            <Tab onClick={() => handler("timeline")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "timeline" ? true : false} isHover={isHoverTab == 3 ? true : false} name="Journal"/>
-                        </div>
-                        <div
-                            onMouseEnter={() => handleMouseEnterTab(1)}
-                            onMouseLeave={handleMouseLeaveTab}
-                        >
-                            <Tab onClick={() => changeTab("activity")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "activity" ? true : false} isHover={isHoverTab == 1 ? true : false} name="Activities"/>
-                        </div>
-                        <div
-                            onMouseEnter={() => handleMouseEnterTab(2)}
-                            onMouseLeave={handleMouseLeaveTab}
-                        >
-                            <Tab onClick={() => changeTab("info")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "info" ? true : false} isHover={isHoverTab == 2 ? true : false} name="Info"/>
-                        </div>
-                    </TabContainer> : null
+                        <TabContainer>
+                            <div
+                                onMouseEnter={() => handleMouseEnterTab(0)}
+                                onMouseLeave={handleMouseLeaveTab}
+                            >
+                                <Tab onClick={() => changeTab("overview")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "overview" ? true : false} isHover={isHoverTab == 0 ? true : false} name="Overview" />
+                            </div>
+                            <div
+                                onMouseEnter={() => handleMouseEnterTab(3)}
+                                onMouseLeave={handleMouseLeaveTab}
+                            >
+                                <Tab onClick={() => handler("timeline")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "timeline" ? true : false} isHover={isHoverTab == 3 ? true : false} name="Journal" />
+                            </div>
+                            <div
+                                onMouseEnter={() => handleMouseEnterTab(1)}
+                                onMouseLeave={handleMouseLeaveTab}
+                            >
+                                <Tab onClick={() => changeTab("activity")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "activity" ? true : false} isHover={isHoverTab == 1 ? true : false} name="Activities" />
+                            </div>
+                            <div
+                                onMouseEnter={() => handleMouseEnterTab(2)}
+                                onMouseLeave={handleMouseLeaveTab}
+                            >
+                                <Tab onClick={() => changeTab("info")} color="white" activated={isHoverTab == -1 && configuration.activeComponentName == "info" ? true : false} isHover={isHoverTab == 2 ? true : false} name="Info" />
+                            </div>
+                        </TabContainer> : null
                 }
                 <NeonBox>
                     <LoadingArea>
                         {
                             componentToRender(configuration.activeComponentName, configuration.activeCard)
                         }
-                    </LoadingArea>   
+                    </LoadingArea>
+                    <Container
+                        id='arrowContainer'
+                        display='flex'
+                        flexDirection='row'
+                        justifyContent='space-between'
+                        height='8vh'
+                        alignItems='center'
+                        marginTop='2vh'
+                    >
+                        {
+                            configuration.rightArrow && index < (configuration.overviewComponent.length - 1) ?
+                                <Box
+                                    position='relative'
+                                    onMouseEnter={handleMouseEnterArrowRight}
+                                    onMouseLeave={handleMouseLeaveArrowRight}
+                                >
+                                    <Arrow
+                                        side='right'
+                                        onClick={next}
+                                    />
+                                </Box>
+                                : <Box width='154.2px'></Box>
+                        }
+                        {
+                            configuration.leftArrow && index > 0 ?
+                                <Box
+                                    marginRight={'2x'}
+                                    onMouseEnter={handleMouseEnterArrowLeft}
+                                    onMouseLeave={handleMouseLeaveArrowLeft}
+                                >
+                                    <Arrow
+                                        side='left'
+                                        onClick={prev}
+                                    />
+                                </Box>
+                                : <Box width='154.2px'></Box>
+                        }
+                    </Container>
                 </NeonBox>
             </MainContainer>
-        </>
+        </HStack>
     )
 };

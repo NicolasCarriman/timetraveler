@@ -20,7 +20,7 @@ export const HeaderBanner: React.FC<IHeaderBanner> = (props) => {
   return (
     <Box
       id='banner'
-      h='100%'
+      h='34vh'
       width='100%'
       display='flex'
       justifyContent='center'

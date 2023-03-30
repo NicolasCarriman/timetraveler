@@ -15,8 +15,7 @@ export const ItemCarrousel: React.FC<ItemCarrouselProps> = (props) => {
   return (
     <Box
       as='h3'
-      ml='28'
-      mr='34'
+      ml='6vw'
       left={0} // Agregar left: 0
       right={0} // Agregar right: 0
       position='absolute' // Establecer la propiedad position en absolute

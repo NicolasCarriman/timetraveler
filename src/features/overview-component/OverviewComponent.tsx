@@ -5,8 +5,9 @@ import {
     TextArea,
     BannerContainer,
     HeaderBanner,
-    InputContainer,
+    TextAreaContainer,
 } from "./OverviewComponent.styled";
+import { Button } from "@chakra-ui/react";
 
 interface OverviewProps {
     config: ModuleOverviewConfiguration
@@ -23,14 +24,14 @@ export const OverviewComponent: React.FC<OverviewProps> = (
     return (
         <>
             <BannerContainer>
-                <HeaderBanner imageUrl={config.images[currentSlideSelected]} />
+               <HeaderBanner imageUrl={config.images[currentSlideSelected]} />
             </BannerContainer>
-            <InputContainer>
+            <TextAreaContainer>
                 <TextArea 
                     width="36vw"
                     value={config.textArea}
                 />
-            </InputContainer>
+            </TextAreaContainer>
         </>
     )
 };

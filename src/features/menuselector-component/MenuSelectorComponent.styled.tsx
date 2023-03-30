@@ -50,12 +50,8 @@ interface ILoadingAreaProps {
 export const LoadingAreaInvisible: React.FC<ILoadingAreaProps> = (props) => {
     return (
       <Box
-        display='flex'
-        flexDirection='row'
-        justifyContent='center'
-        alignItems='center'
-        height='100%'
-        overflow='hidden'
+        as='main'
+        id='loading-area-invisible'
       >
         {props.children}
       </Box>
