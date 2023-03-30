@@ -1,5 +1,5 @@
 import { Box, BoxProps, keyframes, Container, Textarea } from "@chakra-ui/react";
-import  React  from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 interface IHeaderBanner extends BoxProps {
@@ -15,21 +15,25 @@ const animationImgChangeKeyframes = keyframes`
 const animationImgChange = `${animationImgChangeKeyframes} 5s linear infinite`;
 
 export const HeaderBanner: React.FC<IHeaderBanner> = (props) => {
+
   return (
-    <Box
-      id='banner'
-      h='100%'
-      width='100%'
-      display='flex'
-      justifyContent='center'
-      alignItems='center'
-      as={motion.div}
-      animation={animationImgChange}
-      {...props}
-    >
-      <img src={props.imageUrl} alt='bannerImg' />
-      <Mask/>
-    </Box>
+      <Box
+        as={motion.div}
+        key={props.imageUrl}
+        id='banner'
+        h='100%'
+        width='100%'
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, duration: 2 }}
+        exit={{ opacity: 0}}
+        {...props}
+      >
+        <img src={props.imageUrl} alt='bannerImg' />
+        <Mask />
+      </Box>
   );
 };
 
@@ -51,7 +55,7 @@ export const Mask: React.FC = () => {
 };
 
 export const BannerContainer: React.FC<BoxProps> = (props) => {
-  return(
+  return (
     <Container
       id="banner-container"
       position='relative'
@@ -66,11 +70,13 @@ export const BannerContainer: React.FC<BoxProps> = (props) => {
   );
 }
 
-export const InputContainer: React.FC<BoxProps> = (props) => {
-  return(
+export const TextAreaContainer: React.FC<BoxProps> = (props) => {
+  return (
     <Container
       display='flex'
       flexDirection='column'
+      justifyContent='center'
+      align-items='center'
       minH='46.5vh'
       minW='38.2vw'
       padding='3%'
@@ -81,31 +87,31 @@ export const InputContainer: React.FC<BoxProps> = (props) => {
 }
 
 export const TextArea: React.FC<{
-    left?: string; 
-    top?: string; 
-    width: string;
-    placeholderText?: string;
-    value?: string;
-  }> = ({left, top, width, placeholderText, value}) => {
+  left?: string;
+  top?: string;
+  width: string;
+  placeholderText?: string;
+  value?: string;
+}> = ({ left, top, width, placeholderText, value }) => {
 
-    return (
-        <Textarea
-            isRequired
-            textAlign='center'
-            position='relative'
-            resize= 'none'
-            top={top}
-            left={left}
-            px="2vw"
-            backgroundColor={"rgba(255, 255, 255, 0.01)"}
-            height="25vh"
-            value={value}
-            width={width}
-            border="none"
-            borderBottom= "1px solid gray"
-            color= "white"
-            _placeholder={{ color: "gray.600" }}
-            placeholder={placeholderText}
-        />
-    )
+  return (
+    <Textarea
+      isRequired
+      textAlign='center'
+      position='relative'
+      resize='none'
+      top={top}
+      left={left}
+      px="2vw"
+      backgroundColor={"rgba(255, 255, 255, 0.01)"}
+      height="calc(38vh)"
+      value={value}
+      width={width}
+      border="none"
+      borderBottom="1px solid gray"
+      color="white"
+      _placeholder={{ color: "gray.600" }}
+      placeholder={placeholderText}
+    />
+  )
 }

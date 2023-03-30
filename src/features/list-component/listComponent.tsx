@@ -29,9 +29,6 @@ export const ListComponent: React.FC<ListProps> = (
     selectActivity,
   } = useActivity();
 
-  const handleClick = (id: string) => {
-    selectActivity(id);
-  };
   return (
     <>
       {

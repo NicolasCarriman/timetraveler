@@ -21,7 +21,7 @@ export const NoteComponent: React.FC<NoteProps> = (
         <>
             <InputContainer>
                 <TextArea 
-                    width="36vw"
+                    width='auto'
                     value={configuration.textArea}
                 />
             </InputContainer>

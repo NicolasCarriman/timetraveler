@@ -22,6 +22,7 @@ export const TipMessage: React.FC<{
 
 export const MainContainer: React.FC<ContainerProps> = (props) => (
     <Container
+		id='mainContainer'
 		h='65vh'
 		position='absolute'
 		top='20vh'

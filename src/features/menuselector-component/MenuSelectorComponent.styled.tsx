@@ -64,6 +64,7 @@ export const LoadingAreaInvisible: React.FC<ILoadingAreaProps> = (props) => {
     return (
       <Box
         as='main'
+        id='loading-area-invisible'
         display='flex'
         flexDirection='row'
         justifyContent='center'
