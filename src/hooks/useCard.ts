@@ -10,7 +10,6 @@ export const useCard = (
     const [configuration, setConfiguration] = React.useState(
         {
             title: config.title,
-            textAreaValue: config.textAreaValue,
             imgUrl: config.imgUrl,
             maskActive: config.maskActive,
         }

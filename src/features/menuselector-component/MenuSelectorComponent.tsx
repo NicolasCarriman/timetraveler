@@ -36,7 +36,7 @@ export const MenuSelectorComponent: React.FC<MenuSelectorProps> = (
             <Letter value={"Choose your destiny"}/>
             <MainContainer
                 maxWidth='90vw'
-                height={configuration.height}
+                height='65vh'
                 mt='8'
             >
                 <NeonBox>
@@ -48,7 +48,11 @@ export const MenuSelectorComponent: React.FC<MenuSelectorProps> = (
                                     onMouseLeave={handleMouseLeaveCard}
                                     onClick={() => handlerCard(i)}
                                 >
-                                    <CardComponent config={configuration.cards[i]} isHover={isHoverCard == i ? true : false} somethingIsSelected={isHoverCard != -1 ? true : false}/>
+                                    <CardComponent 
+                                        config={configuration.cards[i]} 
+                                        isHover={isHoverCard == i ? true : false} 
+                                        somethingIsSelected={isHoverCard != -1 ? true : false}
+                                    />
                                 </div>
                             ))
                         }

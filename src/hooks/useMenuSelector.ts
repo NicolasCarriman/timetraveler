@@ -7,10 +7,8 @@ export const useMenuSelector = (
 
     const [configuration, setConfiguration] = React.useState(
         {
-			accountId: config.accountId,
+			itineraryId: config.itineraryId,
 			cards: config.cards,
-			height: config.height,
-			width: config.width
         }
     );
 	

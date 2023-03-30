@@ -24,7 +24,7 @@ interface NavigationProps {
 export const NavigationComponent: React.FC<NavigationProps> = (
     { config, handler }
 ) => {
-    const { changeTab, changeCard, configuration } = useNavigation(
+    const { changeTab, configuration } = useNavigation(
         config,
     );
 
