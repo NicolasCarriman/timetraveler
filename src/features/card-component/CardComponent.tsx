@@ -23,7 +23,7 @@ export const CardComponent: React.FC<CardProps> = (
     );
 
     return (
-        <CardItem isHover={active} somethingIsSelectedThenHide={somethingIsSelectedThenHide}>
+        <CardItem ishover={active} somethingisselectedthenhide={somethingIsSelectedThenHide}>
             <CardTitle value={configuration.title}/>
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '2.5vh'}}>
                 <CardArea config={configuration} />

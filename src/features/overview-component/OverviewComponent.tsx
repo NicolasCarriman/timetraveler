@@ -3,33 +3,30 @@ import { ModuleOverviewConfiguration } from "../../models/moduleOverviewConfig";
 import { useOverview } from "../../hooks/useOverview";
 import {
     TextArea,
-    BannerContainer,
-    HeaderBanner,
     TextAreaContainer,
 } from "./OverviewComponent.styled";
 import { Button } from "@chakra-ui/react";
+import { useAppSelector } from "../../hooks/useRedux";
+import { intinerarSelector } from "../../redux/reducers/intineraryReducer/intinerary-selector";
+import {
+    HeaderBanner,
+} from "../header-banner/headerBanner";
+import { IDestiny } from "../../models/intineraryReducer";
 
 interface OverviewProps {
-    config: ModuleOverviewConfiguration
-    currentSlide: number
+    config: IDestiny
 }
 
-export const OverviewComponent: React.FC<OverviewProps> = (
-    { config, currentSlide }
-) => {
-    const { configuration, currentSlideSelected } = useOverview(
-        config,
-        currentSlide,
-    );
+export const OverviewComponent: React.FC<OverviewProps> = (props) => {
+    const { config } = props;
+    const { currentSlideSelected } = useOverview(config.images);
     return (
         <>
-            <BannerContainer>
-               <HeaderBanner imageUrl={config.images[currentSlideSelected]} />
-            </BannerContainer>
+            <HeaderBanner imageUrl={config.images[currentSlideSelected]} />
             <TextAreaContainer>
                 <TextArea 
                     width="36vw"
-                    value={config.textArea}
+                    value={config?.textArea}
                 />
             </TextAreaContainer>
         </>

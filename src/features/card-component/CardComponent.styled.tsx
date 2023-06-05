@@ -5,8 +5,8 @@ import { ModuleCardConfiguration } from "../../models/moduleCardConfig";
 
 
 interface PassedProps extends BoxProps{
-	isHover: boolean
-	somethingIsSelectedThenHide: boolean
+	ishover: boolean
+	somethingisselectedthenhide: boolean
 }
 
 export const CardItem: React.FC<PassedProps> = (props) => {
@@ -17,18 +17,18 @@ export const CardItem: React.FC<PassedProps> = (props) => {
 		marginLeft='1vw'
 		display='flex'
 		flexDirection='column'
-		boxShadow={props.isHover ? 'rgba(0, 26, 255, 1) 0px -2px 0px, rgba(255, 255, 255, 0.9) 0px -4px 0px, rgba(255, 255, 255, 0.2) 0px -8px 0px, rgba(255, 255, 255, 0.2) 0px -16px 8px, rgba(255, 255, 255, 0.1) 0px -32px 16px' : 'rgba(0, 26, 255, 0) 0px -2px 0px, rgba(255, 255, 255,0) 0px -4px 0px, rgba(255, 255, 255, 0) 0px -4px 0px, rgba(255, 255, 255, 0.0) 0px -16px 8px, rgba(255, 255, 255, 0.0) 0px -32px 16px'}
+		boxShadow={props.ishover ? 'rgba(0, 26, 255, 1) 0px -2px 0px, rgba(255, 255, 255, 0.9) 0px -4px 0px, rgba(255, 255, 255, 0.2) 0px -8px 0px, rgba(255, 255, 255, 0.2) 0px -16px 8px, rgba(255, 255, 255, 0.1) 0px -32px 16px' : 'rgba(0, 26, 255, 0) 0px -2px 0px, rgba(255, 255, 255,0) 0px -4px 0px, rgba(255, 255, 255, 0) 0px -4px 0px, rgba(255, 255, 255, 0.0) 0px -16px 8px, rgba(255, 255, 255, 0.0) 0px -32px 16px'}
 		height='38vh'
 		width='30vh'
-		transition={props.isHover ? 'all 1000ms ease': 'none'}
-		opacity= {props.isHover ? '1' : '0.3' && props.somethingIsSelectedThenHide ? '0.3' : '0.7'}
+		transition={props.ishover ? 'all 1000ms ease': 'none'}
+		opacity= {props.ishover ? '1' : '0.3' && props.somethingisselectedthenhide ? '0.3' : '0.7'}
 		cursor='pointer'
-		transform={props.isHover ? 'perspective(21vw) rotateY(0deg)' : 'perspective(21vw) rotateY(35deg)'}
+		transform={props.ishover ? 'perspective(21vw) rotateY(0deg)' : 'perspective(21vw) rotateY(35deg)'}
 		borderRadius='2.3vh'
-		borderWidth={props.isHover ? '0.11vw': '0.11vw'}
-		borderColor={props.isHover ? 'rgba(209, 210, 255, 0.6)': 'rgba(255, 255, 255, 0.3)'}
+		borderWidth={props.ishover ? '0.11vw': '0.11vw'}
+		borderColor={props.ishover ? 'rgba(209, 210, 255, 0.6)': 'rgba(255, 255, 255, 0.3)'}
 		borderStyle= 'solid'
-		backgroundColor={props.isHover ? 'rgb(20, 20, 20, 0)' : 'rgb(20, 20, 20, 1)'}
+		backgroundColor={props.ishover ? 'rgb(20, 20, 20, 0)' : 'rgb(20, 20, 20, 1)'}
 	  {...props}
     />
     
@@ -77,7 +77,7 @@ export const CardArea: React.FC<{config: ModuleCardConfiguration}> = (props) => 
 			height='50%'
 			width='50%'
 		>	
-			<img src={props.config.imgUrl} />
+			<img src={props.config.imgUrl} alt={props.config.title}/>
 	 		<Mask isActive={props.config.maskActive}/>
 		</Box>
     )

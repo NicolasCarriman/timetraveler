@@ -89,8 +89,6 @@ export const useActivity = () => {
       const currentIndex = getActIndex(activityList);
       const substraction = actArr.length - currentIndex;
       if ( substraction === 1) {
-        //obtener el indice del seleccionado;
-        //preguntar si hay uno adelante si no hay uno adelante ejecuto next
         console.log('next', substraction);
       }
     } else return actArr;
@@ -104,9 +102,6 @@ export const useActivity = () => {
       return currentIndex * 24; 
     } else return 0;
   };
-
-  React.useEffect(() => {
-  }, [activityList]);
 
   return {
     activityList,

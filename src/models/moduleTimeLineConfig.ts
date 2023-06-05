@@ -17,6 +17,4 @@ export interface ModuleTimeLineConfiguration {
   startDate: Date
   endDate: Date
   days: dayConfiguration[]
-  height: string
-  width: string
 }

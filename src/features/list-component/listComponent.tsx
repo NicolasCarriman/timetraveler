@@ -1,52 +1,45 @@
 
-import { Box } from "@chakra-ui/react";
 import React from "react";
-import { useActivity } from "../../hooks/useActivity";
-import { useList } from "../../hooks/useList";
-import { ModuleListConfiguration } from "../../models/moduleListConfig";
 import CarrouselComponent from "../carrousel-component/carrouselComponent";
-import {
-  HeaderBanner,
-  BannerContainer,
-  EmptyDestinys,
-  InputContainer,
-} from "./listComponent.styled";
+import { Main } from "./listComponent.styled";
+import { getActivities } from "../../services/getActivitites";
+import { useAppSelector } from "../../hooks/useRedux";
+import { activitySelector } from "../../redux/reducers/activityReducer/activity-selector";
+import { ExtraActivity } from "../extraActivity-component/extraActivity";
+import { BoxImage } from "../../components/boxImage";
+import { Container } from "../../components/container";
+import { destinySelector } from "../../redux/reducers/destinyReducer/destiny-selector";
 
 interface ListProps {
-  config: ModuleListConfiguration
-  currentSlide: number
 }
 
-export const ListComponent: React.FC<ListProps> = (
-  { config, currentSlide }
-) => {
-  const { configuration, currentSlideSelected } = useList(
-    config,
-    currentSlide,
-  );
-  const {
-    activityList,
-    selectActivity,
-  } = useActivity();
+export const ListComponent: React.FC<ListProps> = (props) => {
+  const currentActivity = useAppSelector(activitySelector).currentActivity;
+  console.log(currentActivity);
+  const currentDestiny = useAppSelector(destinySelector).currentDestiny;
+  const carrouselConfig = currentDestiny ? getActivities(currentDestiny) : null;
 
   return (
     <>
       {
-        configuration.bannerActivated && configuration.images ?
-          <BannerContainer>
-            <HeaderBanner imageUrl={configuration.images[currentSlideSelected]} />
-          </BannerContainer>
-          : null
+        carrouselConfig ?
+          <>
+            <Container variant='large' display='flex' flexDir='row' gap='12px'>
+              <BoxImage imgUrl={currentActivity ? currentActivity.img : carrouselConfig[0].img}>
+                <Main>
+                  <CarrouselComponent data={carrouselConfig} />
+                </Main>
+              </BoxImage>
+              <ExtraActivity
+                text={currentActivity ? currentActivity.text : ''}
+                location={currentActivity ? currentActivity.location : ''}
+                price={35}
+              />
+            </Container>
+          </> : null
       }
-      <InputContainer>
-      {
-          configuration.carrousel ?
-            <CarrouselComponent
-            /> :
-            <Box />
-        }
-      </InputContainer>
     </>
 
   )
 };
+

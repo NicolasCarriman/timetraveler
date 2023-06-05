@@ -1,29 +1,21 @@
-import { Box } from "@chakra-ui/react";
 import React from "react";
-import { Container } from "../../components/container";
 import { useCarrousel } from "../../hooks/useCarrousel";
-import getRandomId from "../../utilis/uid";
+import { useAppDispatch } from "../../hooks/useRedux";
+import { ICarrouselData } from "../../models/carrouset";
+import { setCurrentActivity } from "../../redux/reducers/activityReducer/activity-slice";
 import { CarrouselContainer, CarrouselElement, ItemCarrousel } from "./CarrouselComponent.styled";
 
-
-const getArray = (num: number) => {
-  let unitys = [];
-  for (let i = 1; i <= num; i++) {
-    unitys.push(
-      {
-        element: `activity ${i}`,
-        selected: i === 1 ? true : false,
-        id: getRandomId(),
-        position: i - 1
-      }
-    );
-  }
-  return unitys;
+interface ICarrousel {
+  data: {
+    text: string;
+    title: string;
+    selected: boolean;
+    id: string;
+    position: number;
+  }[]
 }
+  function CarrouselComponent(props: ICarrousel) {
 
-const array = getArray(32);
-
-function CarrouselComponent() {
   const {
     setDegrees,
     degrees,
@@ -33,12 +25,19 @@ function CarrouselComponent() {
     previus,
     renderData,
     setSelecteElementPrevius
-  } = useCarrousel(array);
+  } = useCarrousel(props.data);
+
+  const dispatch = useAppDispatch();
+
+  const getSelectedActivity = (data: ICarrouselData[]) => {
+    const selectedActivity = data.find((item) => item.selected === true);
+    if (!selectedActivity) return data[0];
+    return selectedActivity;
+  }
 
   const handleClick = (id: string) => {
     const element = renderData.find(i => i.id === id);
-    const isSelectedElement = renderData.find((item) => item.selected === element.selected);
-    if(!element) return;
+    if (!element) return;
     const isLastElement = element.position > (getMaxPosition(renderData) - 3);
     if (!isLastElement) {
       setDegrees(340);
@@ -64,7 +63,7 @@ function CarrouselComponent() {
       setSelectElement(nextElment.id);
     } else {
       let previusElement = renderData[elementIndex - 1];
-      if(elementIndex === 0) {
+      if (elementIndex === 0) {
         const lastElementIndex = renderData.length - 1;
         previusElement = renderData[lastElementIndex];
       }
@@ -73,23 +72,28 @@ function CarrouselComponent() {
     }
   }
 
+  React.useEffect(() => {
+    dispatch(setCurrentActivity(getSelectedActivity(renderData)));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [renderData]);
+
   return (
     <CarrouselContainer>
       <CarrouselElement
         degrees={degrees}
         onWheel={handleScroll}
       >
-          {
-            renderData.map((e, i) => (
-              <ItemCarrousel
-                item={e}
-                onClick={() => handleClick(e.id)}
-                key={i}
-                var={i + 1}
-                elementopacity= {e.opacity}
-              />
-            ))
-          }
+        {
+          renderData.map((e, i) => (
+            <ItemCarrousel
+              item={e}
+              onClick={() => handleClick(e.id)}
+              key={i}
+              var={i + 1}
+              elementopacity={e.opacity}
+            />
+          ))
+        }
       </CarrouselElement>
     </CarrouselContainer>
   );

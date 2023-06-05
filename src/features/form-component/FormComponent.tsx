@@ -23,11 +23,9 @@ export const FormComponent: React.FC<FormProps> = (
         config,
     );
 
-    console.log(config);
-
 
     const sendFormRequest = () => {
-        console.log("Button Clicked, must send http request");
+                        ("Button Clicked, must send http request");
         /*
          If we use this to load the itinerary, we must send a GET http request to: /itinerary?={itineraryId}
          It must retrieve this data:

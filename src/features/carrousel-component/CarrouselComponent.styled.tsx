@@ -11,35 +11,34 @@ interface ItemCarrouselProps extends BoxProps {
 export const ItemCarrousel: React.FC<ItemCarrouselProps> = (props) => {
   const isSelected = props.item.selected;
   let isVisible = props.elementopacity !== '0';
-
   return (
     <Box
       as='h3'
-      ml='6vw'
-      left={0} // Agregar left: 0
-      right={0} // Agregar right: 0
-      position='absolute' // Establecer la propiedad position en absolute
-      fontSize='1.4em'
-      fontWeight={400}
-      letterSpacing='10px'
+      ml='2vw'
+      left={0}
+      right={0}
+      position='absolute'
+      fontSize='1em'
+      fontWeight={isSelected ? 'bold' : 'light'}
+      letterSpacing='2px'
       lineHeight='2em'
-      textShadow={isSelected ? '-1px 3px 8px #0074ff, 3px -4px 8px #b800ff' : 'none'}
       sx={{
         pointerEvents: isVisible ? 'auto' : 'none',
         cursor: 'pointer',
         opacity: props.elementopacity,
-        transition: '0.4s',
+        transition: '0.2s',
         maxW:'26vh',
         width: '100%',
         minWidth: '18vw',
         textAlign: 'center',
-        color: isSelected ? '#00ffd0' : '#fff',
+        color: isSelected ? 'white' : '#ffffffad',
+        textShadow: isSelected ? '1px 1px black' : 'none',
         transform: `
           rotateX(calc(${props.var} * 20deg)) translateZ(105px)`
       }}
       {...props}
     >
-      {props.item.element}
+      {props.item.title}
     </Box>
   );
 };

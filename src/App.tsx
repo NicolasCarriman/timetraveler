@@ -4,6 +4,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from './theme/theme';
 import { CoreComponent } from './features/core-component/CoreComponent';
 import { ModuleCoreConfiguration } from './models/moduleCoreConfig';
+import {Provider} from 'react-redux';
+import { store } from './redux/store';
 
 
 const configurationCore: ModuleCoreConfiguration = {
@@ -27,11 +29,13 @@ const configurationCore: ModuleCoreConfiguration = {
 
 function App() {
   return (
-    <ChakraProvider
-      theme={theme}
-    >
-      <CoreComponent config={configurationCore}/>
-    </ChakraProvider>
+    <Provider store={store}>
+      <ChakraProvider
+        theme={theme}
+      >
+        <CoreComponent config={configurationCore} />
+      </ChakraProvider>
+    </Provider>
   );
 }
 

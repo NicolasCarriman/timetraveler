@@ -2,13 +2,12 @@ import React from "react";
 import { ICarrouselData } from "../models/carrouset";
 import getRandomId from "../utilis/uid";
 
-//buscar el de la posicion seleccionada
 const getArrayData = () => {
   let renderData: Partial<ICarrouselData>[] = [];
 
   for (let i = 0; i < 18; i++) {
     renderData.push({
-      element: ``,
+      title: ``,
       position: i
     })
   };
@@ -18,7 +17,7 @@ const getArrayData = () => {
 
 export const useCarrousel = (array: ICarrouselData[]) => {
   const [renderData, setRenderData] = React.useState<any[]>(setOrder(array));
-  const [carrouselData, setCarrouselData] = React.useState<ICarrouselData[]>(array);
+  let carrouselData = array;
   const [degrees, setDegrees] = React.useState<number>(0);
 
   const getMaxPosition = (array: ICarrouselData[]) => {
@@ -96,7 +95,7 @@ export const useCarrousel = (array: ICarrouselData[]) => {
   };
 
   const getNextElements = (currenSelected: ICarrouselData) => {
-    const selectedIndex = carrouselData.findIndex(item => item.element === currenSelected.element);
+    const selectedIndex = carrouselData.findIndex(item => item.title === currenSelected.title);
     let elementsSliced = carrouselData.slice(selectedIndex - 3, selectedIndex);
     if (!elementsSliced.length) {
       elementsSliced = carrouselData.slice(0, selectedIndex);
@@ -281,7 +280,7 @@ export const useCarrousel = (array: ICarrouselData[]) => {
     const visibleElements = () => {
 
       const getNextElements = (currenSelected: ICarrouselData) => {
-        const nextElementIndex = carrouselData.findIndex(item => item.element === currenSelected.element);
+        const nextElementIndex = carrouselData.findIndex(item => item.title === currenSelected.title);
         const nextElements = carrouselData.slice(nextElementIndex + 1, nextElementIndex + 4);
 
         if (nextElements.length < 3) {
@@ -394,7 +393,6 @@ export const useCarrousel = (array: ICarrouselData[]) => {
     setDegrees(degrees + (20 * repetitions));
   }
 
-  //tengo que añadir el atributo opacidad 
   return {
     setDegrees,
     degrees,

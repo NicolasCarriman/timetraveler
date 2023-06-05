@@ -260,7 +260,7 @@ export const XLetterAnimation: React.FC<{
 			as={motion.div}
 			animation={isHover ? animationMoveXLetter : "none"}
 			userSelect='none'
-			spellCheck='false'
+			spellCheck={false}
 			fontFamily= 'Space Grotesk'
       zIndex='10'
 		>
