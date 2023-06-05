@@ -22,8 +22,16 @@ export const TipMessage: React.FC<{
 
 export const MainContainer: React.FC<ContainerProps> = (props) => (
     <Container
+		maxWidth='50vw'
+		height='65vh'
+		mt='12px'
 		id='mainContainer'
 		h='65vh'
+		display='flex'
+		flexDirection='row'
+		justifyContent='center'
+		alignItems='flex-start'
+		{...props}
     />
 );
 
@@ -54,17 +62,16 @@ export const LetterAnimation: React.FC<{
 }
 
 interface InputContainerProps extends BoxProps {
-	isHover: boolean;
+	ishover: boolean;
 }
 
 export const InputContainer: React.FC<InputContainerProps> = (props) => {
     return (
         <Box
 			position='relative'
-			top='20vh'
 			transition='0.5s'
-			background= {props.isHover ? 'linear-gradient(to top, transparent 50%, #070707 50%), linear-gradient(180deg, rgba(0,151,255,0) 80%, rgba(0,151,255,0.2497373949579832) 99%, rgba(78,116,176,0.6895133053221288) 100%)': '#070707'}
-			boxShadow= {props.isHover ? 'rgba(0, 26, 255, 1) -0px 2px 2px, rgba(255, 255, 255, 0.9) -0px 4px 4px, rgba(255, 255, 255, 0.2) -0px 8px 8px, rgba(255, 255, 255, 0.2) -0px 16px 8px, rgba(255, 255, 255, 0.1) -0px 32px 16px' : 'rgba(0, 26, 255, 0.5) -0px 2px 2px, rgba(255, 255, 255, 0.5) -0px 4px 4px, rgba(255, 255, 255, 0.1) 0px 4px 2px, rgba(255, 255, 255, 0.1) -0px 8px 4px, rgba(255, 255, 255, 0.1) -0px 16px 8px'}
+			background= {props.ishover ? 'linear-gradient(to top, transparent 50%, #070707 50%), linear-gradient(180deg, rgba(0,151,255,0) 80%, rgba(0,151,255,0.2497373949579832) 99%, rgba(78,116,176,0.6895133053221288) 100%)': '#070707'}
+			boxShadow= {props.ishover ? 'rgba(0, 26, 255, 1) -0px 2px 2px, rgba(255, 255, 255, 0.9) -0px 4px 4px, rgba(255, 255, 255, 0.2) -0px 8px 8px, rgba(255, 255, 255, 0.2) -0px 16px 8px, rgba(255, 255, 255, 0.1) -0px 32px 16px' : 'rgba(0, 26, 255, 0.5) -0px 2px 2px, rgba(255, 255, 255, 0.5) -0px 4px 4px, rgba(255, 255, 255, 0.1) 0px 4px 2px, rgba(255, 255, 255, 0.1) -0px 8px 4px, rgba(255, 255, 255, 0.1) -0px 16px 8px'}
 			height='60%'
 			display='flex'
 			flexDirection='column'
@@ -82,24 +89,6 @@ export const InputContainer: React.FC<InputContainerProps> = (props) => {
       	</Box>
     )
 };
-
-interface ILoadingAreaProps {
-    children?: React.ReactNode;
-}
-
-export const LoadingAreaInvisible: React.FC<ILoadingAreaProps> = (props) => {
-    return (
-      <Box
-        display='flex'
-        flexDirection='column'
-        alignItems='center'
-        height='100%'
-      >
-        {props.children}
-      </Box>
-    );
-  };
-
 
   export const InputField: React.FC<{
     type?: string;

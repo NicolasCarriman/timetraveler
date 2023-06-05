@@ -7,7 +7,7 @@ import {
 import { FormComponent } from "../form-component/FormComponent";
 import { NavigationComponent } from "../navigation-component/NavigationComponent";
 import { MenuSelectorComponent } from "../menuselector-component/MenuSelectorComponent";
-import { TimeLineComponent } from "../timeline-component/TimeLineComponent";
+import { TimeLineComponent } from "../timeLine-component/TimeLineComponent";
 import { ModuleNavigationConfiguration } from '../../models/moduleNavigationConfig';
 import { ModuleMenuSelectorConfiguration } from '../../models/moduleMenuSelectorConfig';
 import { ModuleFormConfiguration } from '../../models/moduleFormConfig';
@@ -427,6 +427,7 @@ export const CoreComponent: React.FC<CoreProps> = (
 	}, [configuration.selectedCard])
     
     const componentToRender = (componentName: string) => {
+        console.log(componentName);
         switch(componentName) {
             case 'form':
                 return <FormComponent config={configurationForm} handler={loadComponent}/>;
@@ -439,7 +440,7 @@ export const CoreComponent: React.FC<CoreProps> = (
             default:
                 return <FormComponent config={configurationForm} handler={loadComponent}/>;
         }
-      }
+    }
     
     return (
         <>

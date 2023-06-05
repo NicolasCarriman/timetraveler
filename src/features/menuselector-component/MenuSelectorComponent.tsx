@@ -37,9 +37,12 @@ export const MenuSelectorComponent: React.FC<MenuSelectorProps> = (
             <MainContainer
                 maxWidth='90vw'
                 height='65vh'
-                mt='8'
             >
-                <NeonBox>
+                <NeonBox
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
+                >
                     <LoadingAreaInvisible>
                         {
                             configuration.cards.map((e, i) => (

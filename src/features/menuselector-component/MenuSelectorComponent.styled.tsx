@@ -21,10 +21,10 @@ export const Letter: React.FC<{
 
 export const MainContainer: React.FC<ContainerProps> = (props) => (
     <Container
-    position='absolute'
-    top='18vh'
-    left='5vw'
-    p='0'
+    position='relative'
+    display='flex'
+    justifyContent='center'
+    alignItems='center'
     {...props}
     />
 );
@@ -52,6 +52,9 @@ export const LoadingAreaInvisible: React.FC<ILoadingAreaProps> = (props) => {
       <Box
         as='main'
         id='loading-area-invisible'
+        display='flex'
+        flexDir='row'
+        justifyContent='center'
       >
         {props.children}
       </Box>

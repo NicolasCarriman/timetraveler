@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { ModuleFormConfiguration } from "../../models/moduleFormConfig";
 import { useForm } from "../../hooks/useForm";
 import {
-    MainContainer,
     InputContainer,
-    LoadingAreaInvisible,
     TipMessage,
     InputField,
     ButtonAura,
     LetterAnimation,
+    MainContainer,
 } from "./FormComponent.styled";
 
 
@@ -23,6 +22,8 @@ export const FormComponent: React.FC<FormProps> = (
     const { configuration } = useForm(
         config,
     );
+
+    console.log(config);
 
 
     const sendFormRequest = () => {
@@ -51,17 +52,13 @@ export const FormComponent: React.FC<FormProps> = (
     const handleMouseLeave = () => {
         setIsHover(false);
     };
+    
     return (
         <>
             <TipMessage value={configuration.title}/>
-            <MainContainer
-                maxWidth='50vw'
-                height='65vh'
-                mt='8'
-            >
-                <LoadingAreaInvisible>
+            <MainContainer>
                     <InputContainer
-                        isHover={isHover}
+                        ishover={isHover}
                     >
                         <InputField placeholder={configuration.inputText}/>
                         <div
@@ -72,7 +69,6 @@ export const FormComponent: React.FC<FormProps> = (
                             <LetterAnimation value={configuration.buttonText} isHover={isHover}/>
                         </div>
                     </InputContainer>
-                </LoadingAreaInvisible>  
             </MainContainer>
         </>
     )
