@@ -285,7 +285,7 @@ export const LetterAnimation: React.FC<{
 			as={motion.div}
 			animation={isHover ? animationMoveLetters : "none"}
 			userSelect='none'
-			spellCheck='false'
+			spellCheck={false}
 			fontFamily= 'Space Grotesk'
 		>
 			{value}
@@ -308,7 +308,7 @@ export const XLetterAnimation: React.FC<{
 			as={motion.div}
 			animation={isHover ? animationMoveLetters : "none"}
 			userSelect='none'
-			spellCheck='false'
+			spellCheck={false}
 			fontFamily= 'Space Grotesk'
       zIndex='10'
 		>

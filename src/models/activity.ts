@@ -4,3 +4,11 @@
     selected: boolean;
     text: string;
   };
+
+  export interface ActivityState {
+    text: string
+    title: string
+    price: number
+    location: string
+    imgUrl?: string
+  }

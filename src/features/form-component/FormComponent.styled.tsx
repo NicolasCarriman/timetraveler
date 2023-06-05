@@ -98,17 +98,17 @@ export const InputContainer: React.FC<InputContainerProps> = (props) => {
 
     return (
         <Input
-            type={type == undefined ? "text" : type}
+            type={type === undefined ? "text" : type}
             isRequired
             textAlign='center'
             backgroundColor={"rgba(255, 255, 255, 0.01)"}
             height="5vh"
-            width={width == undefined ? "15vw" : width}
+            width={width === undefined ? "15vw" : width}
             border="none"
             borderBottom= "1px solid gray"
             color= "white"
             _placeholder={{ color: "gray.100" }}
-            placeholder={placeholder == undefined ? "Input text" : placeholder}
+            placeholder={placeholder === undefined ? "Input text" : placeholder}
 			fontFamily= 'Space Grotesk'
         />
     )

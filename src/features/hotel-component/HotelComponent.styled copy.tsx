@@ -1,4 +1,4 @@
-import { Box, BoxProps, keyframes, ContainerProps, Container, Text, Textarea } from "@chakra-ui/react";
+import { Box, BoxProps, keyframes, ContainerProps, Container, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import  React  from 'react';
 import star from "../../theme/hotels/star2.png";
@@ -269,7 +269,7 @@ export const LetterAnimation: React.FC<{
 			as={motion.div}
 			animation={isHover ? animationMoveLetters : "none"}
 			userSelect='none'
-			spellCheck='false'
+			spellCheck={false}
 			fontFamily= 'Space Grotesk'
       zIndex= '49'
       transform='rotate(-90deg)'

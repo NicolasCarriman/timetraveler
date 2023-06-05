@@ -13,6 +13,10 @@ export const MainContainer: React.FC<ContainerProps> = (props) => (
     border='none'
     display='flex'
     flexDir='column'
+    maxWidth='calc(100vw)'
+    width='100%'
+    justifyContent='center'
+    alignItems='center'
     boxSizing='border-box'
     p='0'
     height='calc(100vh)'
@@ -30,6 +34,7 @@ export const NeonBox: React.FC<BoxProps> = (props) => {
       height='100%'
       minH='70vh'
       display='flex'
+      width='65%'
       flexDirection='column'
       p='4'
       borderRadius='8px'
@@ -50,10 +55,6 @@ export const LoadingArea: React.FC<ILoadingAreaProps> = (props) => {
       as='main'
       overflow='hidden'
       id='loading-area'
-      display='flex'
-      flexDirection='column'
-      justifyContent='center'
-      alignItems='center'
       height='100%'
       flex='1'
       borderRadius='12px'
@@ -75,11 +76,9 @@ interface IArrow extends BoxProps {
 
 interface IArrowAnimated extends BoxProps {
   animation?: any
-  side: 'left' | 'right'
 }
 
 const AnimatedArrow: React.FC<IArrowAnimated> = (props) => {
-  const { side } = props;
   return (
     <Box
       transform='rotateZ(90deg)'
@@ -182,7 +181,7 @@ export const Arrow: React.FC<IArrow> = (props) => {
         {
           ArrowArray.map((element, index) => (
             <AnimatedArrow
-              side={props.side}
+              key={index}
               animation={isHover ? getKeyFrames(index) : undefined}
             >
             </AnimatedArrow>
@@ -274,4 +273,3 @@ export const Tab: React.FC<TabProps> = ({
       </Box>
   );
 };
-

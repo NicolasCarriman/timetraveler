@@ -1,27 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ModuleMenuSelectorConfiguration } from "../../models/moduleMenuSelectorConfig";
 import { CardComponent } from "../card-component/CardComponent";
 import { useMenuSelector } from "../../hooks/useMenuSelector";
 import {
     MainContainer,
     NeonBox,
-    LoadingAreaInvisible,
+    IntineraryComponent,
     Letter,
 } from "./MenuSelectorComponent.styled";
+import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import { intinerarSelector } from "../../redux/reducers/intineraryReducer/intinerary-selector";
+import { useDestiny } from "../../hooks/useDestiny";
+import { getIntinerary } from "../../services/getIntinerary";
+import { getActiveElement } from "@testing-library/user-event/dist/utils";
+import { getActualIntinerary, overview } from "../../redux/reducers/intineraryReducer/intinerary-state";
+import { setCurrentDestiny, setDestinations } from "../../redux/reducers/destinyReducer/destiny-slice";
+import { destinySelector } from "../../redux/reducers/destinyReducer/destiny-selector";
+import { ModuleCardConfiguration } from "../../models/moduleCardConfig";
+import { destinyToCardAdapter } from "../../adapters/cardAdapter";
 
 interface MenuSelectorProps {
-    config: ModuleMenuSelectorConfiguration
     handlerCard: (id: number) => void
 }
 
-export const MenuSelectorComponent: React.FC<MenuSelectorProps> = (
-    { config, handlerCard }
-) => {
-    const { configuration } = useMenuSelector(
-        config,
-    );
+export const MenuSelectorComponent: React.FC<MenuSelectorProps> = ({handlerCard}) => {
 
     const [isHoverCard, setIsHoverCard] = useState(-1);
+    const [cardConfig, setCardConfig ] = useState<ModuleCardConfiguration[] | null>(null)
+    const dispatch = useAppDispatch();
 
     const handleMouseEnterCard = (cardSelected: number) => {
         setIsHoverCard(cardSelected);
@@ -30,6 +36,32 @@ export const MenuSelectorComponent: React.FC<MenuSelectorProps> = (
     const handleMouseLeaveCard = () => {
         setIsHoverCard(-1);
     };
+
+    const selectCurrentDestiny = (i : number) => {
+        console.log('currentDestiny :', destinyState.Destinations[i]);
+        dispatch(setCurrentDestiny(destinyState.Destinations[i]))
+    }
+
+    const handleClick = (id:number) => {
+        selectCurrentDestiny(id);
+        handlerCard(id);
+    }
+
+    const destinyState = useAppSelector(destinySelector);
+
+    const setDestiny = () => {
+        const intineraryData = getIntinerary();
+        dispatch(setDestinations(intineraryData));
+    }
+
+    React.useEffect(() => {
+        setDestiny();
+    }, []);
+
+    React.useEffect(() => {
+        const getCardConfig = destinyToCardAdapter(destinyState.Destinations);
+        setCardConfig(getCardConfig);
+    }, [destinyState])
 
     return (
         <>
@@ -43,23 +75,23 @@ export const MenuSelectorComponent: React.FC<MenuSelectorProps> = (
                     justifyContent='center'
                     alignItems='center'
                 >
-                    <LoadingAreaInvisible>
+                    <IntineraryComponent>
                         {
-                            configuration.cards.map((e, i) => (
+                            cardConfig && cardConfig.map((e, i) => (
                                 <div
                                     onMouseEnter={() => handleMouseEnterCard(i)}
                                     onMouseLeave={handleMouseLeaveCard}
-                                    onClick={() => handlerCard(i)}
+                                    onClick={() => handleClick(i)}
                                 >
                                     <CardComponent 
-                                        config={configuration.cards[i]} 
+                                        config={cardConfig[i]} 
                                         isHover={isHoverCard == i ? true : false} 
                                         somethingIsSelected={isHoverCard != -1 ? true : false}
                                     />
                                 </div>
                             ))
                         }
-                    </LoadingAreaInvisible>   
+                    </IntineraryComponent>   
                 </NeonBox>
             </MainContainer>
         </>

@@ -53,6 +53,8 @@ import london1 from "../../theme/cities/london1.jpg";
 import london2 from "../../theme/cities/london2.jpg";
 import london3 from "../../theme/cities/london3.jpg";
 import london4 from "../../theme/cities/london4.jpg";
+import { useAppSelector } from "../../hooks/useRedux";
+import { intinerarSelector } from "../../redux/reducers/intineraryReducer/intinerary-selector";
 
 const dayBudapest1: dayConfiguration = {
     events: [
@@ -281,8 +283,6 @@ const budapestTimeLine: ModuleTimeLineConfiguration = {
     startDate: new Date("2022-05-1"),
     endDate: new Date("2022-05-4"),
     days: [dayBudapest1, dayBudapest2, dayBudapest3, dayBudapest4],
-    height: "95vh",
-    width: "90vw"
 }
 
 const paristList: ModuleListConfiguration = {
@@ -299,8 +299,6 @@ const parisTimeLine: ModuleTimeLineConfiguration = {
     startDate: new Date("2022-05-1"),
     endDate: new Date("2022-05-4"),
     days: [dayParis1, dayParis2, dayParis3],
-    height: "95vh",
-    width: "90vw"
 }
 
 const berlinList: ModuleListConfiguration = {
@@ -317,8 +315,6 @@ const berlinTimeLine: ModuleTimeLineConfiguration = {
     startDate: new Date("2022-05-1"),
     endDate: new Date("2022-05-4"),
     days: [dayBudapest1, dayBudapest2, dayBudapest3, dayBudapest4],
-    height: "95vh",
-    width: "90vw"
 }
 
 const pragueList: ModuleListConfiguration = {
@@ -335,8 +331,6 @@ const pragueTimeLine: ModuleTimeLineConfiguration = {
     startDate: new Date("2022-05-1"),
     endDate: new Date("2022-05-4"),
     days: [dayBudapest1, dayBudapest2, dayBudapest3, dayBudapest4],
-    height: "95vh",
-    width: "90vw"
 }
 
 const londonList: ModuleListConfiguration = {
@@ -353,8 +347,6 @@ const londonTimeLine: ModuleTimeLineConfiguration = {
     startDate: new Date("2022-05-1"),
     endDate: new Date("2022-05-4"),
     days: [],
-    height: "95vh",
-    width: "90vw"
 }
 
 const configurationNavigation: ModuleNavigationConfiguration = {
@@ -371,36 +363,7 @@ const configurationNavigation: ModuleNavigationConfiguration = {
   journalComponent: [budapestTimeLine, parisTimeLine, berlinTimeLine, pragueTimeLine, londonTimeLine],
   infoComponent: [budapestList, paristList, berlinList, pragueList, londonList]
 }
-const configurationMenuSelector: ModuleMenuSelectorConfiguration = {
-    itineraryId: "5ceeda5f-4cf3-4a01-b625-b5d56aed7046",
-    cards: [
-        {
-            title: "Hungary",
-            imgUrl: flag1,
-            maskActive: false
-        },
-        {
-            title: "France",
-            imgUrl: flag2,
-            maskActive: false
-        },
-        {
-            title: "Germany",
-            imgUrl: flag3,
-            maskActive: false,
-        },
-        {
-            title: "Czech Republic",
-            imgUrl: flag4,
-            maskActive: false,
-        },
-        {
-            title: "United Kingdom",
-            imgUrl: flag5,
-            maskActive: false,
-        },
-    ]
-}
+
 const configurationForm: ModuleFormConfiguration = {
   inputText: "Input itinerary ID",
   buttonText: "N E X T",
@@ -415,24 +378,14 @@ interface CoreProps {
 export const CoreComponent: React.FC<CoreProps> = (
     { config }
 ) => {
-    const { loadComponent, loadCard, configuration } = useCore(
-        config,
-    );
-
-	React.useEffect(() => {
-		console.log("selectedCard: " + configuration.selectedCard)
-		if (configuration.selectedCard != -1) {
-			loadComponent("navigation")
-		}
-	}, [configuration.selectedCard])
+    const { loadComponent, loadCard, configuration } = useCore(config);
     
     const componentToRender = (componentName: string) => {
-        console.log(componentName);
         switch(componentName) {
             case 'form':
                 return <FormComponent config={configurationForm} handler={loadComponent}/>;
             case 'menuselector':
-                return <MenuSelectorComponent config={configurationMenuSelector} handlerCard={loadCard}/>;
+                return <MenuSelectorComponent handlerCard={loadCard}/>;
             case 'navigation':
                 return <NavigationComponent config={{...configurationNavigation, activeCard: configuration.selectedCard}} handler={loadComponent}/>;
             case 'timeline':
@@ -441,7 +394,14 @@ export const CoreComponent: React.FC<CoreProps> = (
                 return <FormComponent config={configurationForm} handler={loadComponent}/>;
         }
     }
+
     
+	React.useEffect(() => {
+		if (configuration.selectedCard != -1) {
+			loadComponent("navigation")
+		}
+	}, [configuration.selectedCard])
+
     return (
         <>
             {

@@ -47,7 +47,7 @@ interface ILoadingAreaProps {
     children?: React.ReactNode;
 }
 
-export const LoadingAreaInvisible: React.FC<ILoadingAreaProps> = (props) => {
+export const IntineraryComponent: React.FC<ILoadingAreaProps> = (props) => {
     return (
       <Box
         as='main'
