@@ -1,7 +1,4 @@
 import React from "react";
-import { IDestiny } from "../models/intineraryReducer";
-import { intinerarSelector } from "../redux/reducers/intineraryReducer/intinerary-selector"
-import { setDestiny, setIntinerary } from "../redux/reducers/intineraryReducer/intinerarySlice";
 import { useAppDispatch, useAppSelector } from "./useRedux"
 import { destinySelector } from "../redux/reducers/destinyReducer/destiny-selector";
 import { overview } from "../redux/reducers/intineraryReducer/intinerary-state";
@@ -49,6 +46,7 @@ export const useDestiny = () => {
 
   React.useEffect(() => {
     getCurrentDestinyIndex();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [destiny.currentDestiny])
 
   return {

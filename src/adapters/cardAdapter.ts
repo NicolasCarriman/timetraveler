@@ -1,4 +1,4 @@
-import { ModuleCardConfiguration } from "../models/moduleCardConfig";
+import { ModuleCardConfiguration } from "../features/models/moduleCardConfig";
 import { intineraryType } from "../services/getIntinerary";
 import flag1 from "../theme/flags/hungary.png";
 import flag2 from "../theme/flags/france.png";

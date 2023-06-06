@@ -10,8 +10,3 @@ export interface IDestiny extends IIntinerary {
   images: string[]
   activities?: string[]
 }
-
-export interface ICoreIntineraryData {
-  itineraryId: string
-  currentDestiny: IDestiny
-}

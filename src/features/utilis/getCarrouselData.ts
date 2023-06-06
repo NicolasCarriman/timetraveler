@@ -1,7 +1,7 @@
-import getRandomId from "../utilis/uid";
-import { intineraryType } from "./getIntinerary";
+import { intineraryType } from "../../services/getIntinerary";
+import getRandomId from "../../utilis/uid";
 
-export const getActivities = (data: intineraryType) => {
+export const getCarrouselData = (data: intineraryType) => {
   const getArray = (data: intineraryType) => {
     const extraActivities = data.extra_activities;
     let unitys = [];
@@ -9,14 +9,10 @@ export const getActivities = (data: intineraryType) => {
       const currentAct = extraActivities[i - 1];
       unitys.push(
         {
-          img: currentAct.image,
           title: currentAct.title,
           selected: i === 1 ? true : false,
           id: getRandomId(),
           position: i - 1,
-          price: i,
-          text: currentAct.description,
-          location: data.city,
         }
       );
     }

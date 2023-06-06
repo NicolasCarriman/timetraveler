@@ -1,14 +1,12 @@
-import { createAsyncThunk, createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { ActivityInitialState, initialState } from "./activity-state";
-import { getActivities } from "../../../services/getActivitites";
-import { RootState } from "../../store";
-import { ICarrouselData } from "../../../models/carrouset";
+import { IExtraActivities } from "../../../models/extraActivitiesReducer";
 
 export const activitySlice: Slice<Partial<ActivityInitialState>> = createSlice({
   name: 'activity',
   initialState,
   reducers: {
-      setCurrentActivity: (state, action: PayloadAction<ICarrouselData>) => {
+      setCurrentActivity: (state, action: PayloadAction<IExtraActivities>) => {
           return { ...state, currentActivity: action.payload}
       }
   },

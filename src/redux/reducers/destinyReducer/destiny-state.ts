@@ -1,5 +1,4 @@
 import { intineraryType } from "../../../services/getIntinerary"
-import { getActualIntinerary } from "../intineraryReducer/intinerary-state"
 
 export interface DestinyState{
   Destinations: intineraryType[],
