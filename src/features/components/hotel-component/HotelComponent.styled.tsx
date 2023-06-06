@@ -1,4 +1,4 @@
-import { Box, BoxProps, keyframes, ContainerProps, Container, Text, Textarea } from "@chakra-ui/react";
+import { Box, BoxProps, keyframes, ContainerProps, Container, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import  React  from 'react';
 import star from "../../../theme/hotels/star2.png";
@@ -23,26 +23,30 @@ export const Letter: React.FC<{
 
 export const Stars: React.FC<{
   numberOf: number
-}> = ({numberOf}) => {
-  const rows = [];
-  for (let i = 0; i < numberOf; i++) {
-      rows.push(<img src={star} style={{height: '25px', width: '25px'}}></img>);
-  }
-	return(
-		<Box
-      display='flex'
-      flexDirection='row'
-      justifyContent='space-around'
-      alignItems='center'
-      marginTop='1vh'
-      marginBottom='4vh'
-      width='10vw'
-		>
-     {rows}
-		</Box>
-	);
-}
+}> = ({ numberOf }) => {
+  const rows = Array.from({ length: numberOf }, (_, index) => (
+    <img
+      key={index}
+      src={star}
+      style={{ height: '25px', width: '25px' }}
+      alt="Star"
+    />
+  ));
 
+  return (
+    <Box
+      display="flex"
+      flexDirection="row"
+      justifyContent="space-around"
+      alignItems="center"
+      marginTop="1vh"
+      marginBottom="4vh"
+      width="10vw"
+    >
+      {rows}
+    </Box>
+  );
+}
 
 interface IHeaderBanner extends BoxProps {
   imageurl: string;

@@ -1,6 +1,5 @@
-import { Box, BoxProps, keyframes, ContainerProps, Container, ResponsiveValue } from "@chakra-ui/react";
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { Box, BoxProps, ContainerProps, Container } from "@chakra-ui/react";
+import React from 'react';
 
 
 export const MainContainer: React.FC<ContainerProps> = (props) => (
@@ -84,15 +83,6 @@ export const TabContainer: React.FC<BoxProps> = (props) => {
     />
   );
 }
-
-const animationTabSelectionKeyframes = keyframes`
-0% { box-shadow: black; }
-3% { box-shadow: rgba(0, 26, 255, 0.1) 0px -2px 0px, rgba(255, 255, 255, 0.1) 0px -4px 0px, rgba(255, 255, 255, 0.1) 0px -4px 0px, rgba(255, 255, 255, 0.1) 0px -16px 8px, rgba(255, 255, 255, 0.1) 0px -32px 16px; }
-10% { box-shadow: rgba(0, 26, 255, 0.5) 0px -2px 0px, rgba(255, 255, 255, 0.5) 0px -4px 0px, rgba(255, 255, 255, 0.1) 0px -8px 0px, rgba(255, 255, 255, 0.1) 0px -16px 8px, rgba(255, 255, 255, 0.1) 0px -32px 16px; }
-50% { box-shadow: rgba(0, 26, 255, 0.7) 0px -2px 0px, rgba(255, 255, 255, 0.5) 0px -4px 0px, rgba(255, 255, 255, 0.1) 0px -8px 0px, rgba(255, 255, 255, 0.1) 0px -16px 8px, rgba(255, 255, 255, 0.1) 0px -32px 16px; }
-100% { box-shadow: rgba(0, 26, 255, 1) 0px -2px 0px, rgba(255, 255, 255, 0.9) 0px -4px 0px, rgba(255, 255, 255, 0.2) 0px -8px 0px, rgba(255, 255, 255, 0.2) 0px -16px 8px, rgba(255, 255, 255, 0.1) 0px -32px 16px; }
-`;
-const animationTabSelection = `${animationTabSelectionKeyframes} 3s ease-in-out infinite`;
 
 interface TabProps {
   color: string;

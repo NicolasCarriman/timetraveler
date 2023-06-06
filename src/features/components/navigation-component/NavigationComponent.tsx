@@ -14,7 +14,7 @@ import { useAppSelector } from "../../../hooks/useRedux";
 import { destinySelector } from "../../../redux/reducers/destinyReducer/destiny-selector";
 import { intineraryType } from "../../../services/getIntinerary";
 import { ArrowConfig } from "../../models";
-import { Box, Flex, HStack, VStack } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import Arrow from "../arrows-component/arrowsComponent";
 
 interface NavigationProps {
@@ -50,10 +50,6 @@ export const NavigationComponent: React.FC<NavigationProps> = (
     side: 'right'
   }
 
-  const handleTab = (componentName: currentComponent) => {
-    setCurrentComponet(componentName);
-  }
-
   const componentToRender = (componentName: string) => {
     if (!overviewConfig) return;
     switch (componentName) {
@@ -74,7 +70,7 @@ export const NavigationComponent: React.FC<NavigationProps> = (
       margin='0'
     >
       {
-        configuration.tabPanel && <TabsComponent changeTab={handleTab} configuration={configuration} handler={handler} />
+        configuration.tabPanel && <TabsComponent onChangeComponent={setCurrentComponet} config={configuration} handler={handler} />
       }
       <Box
         display='flex'

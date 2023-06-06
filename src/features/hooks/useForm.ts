@@ -16,5 +16,6 @@ export const useForm = (
 	
     return {
 		configuration,
+        setConfiguration
     }
 }
