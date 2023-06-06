@@ -60,7 +60,6 @@ export const getActualIntinerary = (intineraryData : intineraryType[]) => {
 
 const configurationMenuSelector: ICoreIntineraryData = {
     itineraryId: "5ceeda5f-4cf3-4a01-b625-b5d56aed7046",
-    intinerary: [],
     currentDestiny: {
         title: "Hungary",
         imgUrl: flag1,
