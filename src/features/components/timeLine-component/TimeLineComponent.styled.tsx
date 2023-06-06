@@ -1,4 +1,4 @@
-import { Box, BoxProps, ContainerProps, Container, keyframes, Button, ButtonProps, Text, background } from "@chakra-ui/react";
+import { Box, BoxProps, ContainerProps, Container, keyframes, Button, ButtonProps, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import  React  from 'react';
 import { pointConfiguration } from "../../models/moduleTimeLineConfig";

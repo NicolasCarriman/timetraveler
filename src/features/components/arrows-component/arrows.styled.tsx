@@ -50,7 +50,7 @@ export const Arrow: React.FC<IArrow> = (props) => {
 
 
   const animationFrame = keyframes`
-    0% {fill: #1a202c; filter: none;}
+    0% {fill: white; filter: none;}
     25% {fill: #1a202c; filter: none;}
     50% { fill: white; filter: drop-shadow(1px 1px 4px white);}
     75% { fill: white;}

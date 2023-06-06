@@ -1,7 +1,4 @@
 import React from "react";
-import { ModuleOverviewConfiguration } from "../models/moduleOverviewConfig";
-import { intinerarSelector } from "../../redux/reducers/intineraryReducer/intinerary-selector";
-import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 
 export const useOverview = (
     bannerimages: string [],

@@ -45,6 +45,8 @@ export const useHotel = (
     });
     return {
         currentSlideSelected,
-		configuration
+		    configuration,
+        setConfiguration,
+        setImages
     }
 }

@@ -1,7 +1,6 @@
-import { Box, BoxProps, keyframes } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
 import React from 'react';
 import { Container } from "../../../components/container";
-import { motion } from 'framer-motion';
 
 export const InputContainer: React.FC<BoxProps> = (props) => {
   return (
@@ -23,15 +22,6 @@ export const EmptyDestinys: React.FC = () => (
   </Box>
 );
 
-interface ArrowProps {
-  color: string;
-  children?: React.ReactNode;
-  onClick: () => void;
-  top: string;
-  left: string;
-  orientation: string;
-}
-
 export const Main: React.FC<BoxProps> = (props) => {
   return (
     <Box
@@ -40,7 +30,7 @@ export const Main: React.FC<BoxProps> = (props) => {
       height='60%'
       width='20%'
       z-zIndex='20'
-      top='120px'
+      top='22%'
       background='#30303066'
       borderRadius='12px'
       boxShadow='2px 2px 11px 4px #262626f2'

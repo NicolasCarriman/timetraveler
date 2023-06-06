@@ -21,9 +21,12 @@ export const useNavigation = (
         }
     );
 
-	const changeTab = (tabName: string) => {
-		setConfiguration({...configuration, activeComponentName: tabName})
-	};
+		const changeTab = (tabName: string) => {
+			setConfiguration((prevConfig) => ({
+				...prevConfig,
+				activeComponentName: tabName,
+			}));
+		};
 
     return {
 		changeTab,

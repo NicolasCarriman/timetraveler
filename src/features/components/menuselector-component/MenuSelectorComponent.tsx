@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ModuleMenuSelectorConfiguration } from "../../models/moduleMenuSelectorConfig";
+import React, { useState } from "react";
 import { CardComponent } from "../card-component/CardComponent";
-import { useMenuSelector } from "../../hooks/useMenuSelector";
 import {
     MainContainer,
     NeonBox,
@@ -9,8 +7,6 @@ import {
     Letter,
 } from "./MenuSelectorComponent.styled";
 import { useAppDispatch, useAppSelector } from "../../../hooks/useRedux";
-import { intinerarSelector } from "../../../redux/reducers/intineraryReducer/intinerary-selector";
-import { useDestiny } from "../../../hooks/useDestiny";
 import { getIntinerary } from "../../../services/getIntinerary";
 import { setCurrentDestiny, setDestinations } from "../../../redux/reducers/destinyReducer/destiny-slice";
 import { destinySelector } from "../../../redux/reducers/destinyReducer/destiny-selector";
@@ -54,6 +50,7 @@ export const MenuSelectorComponent: React.FC<MenuSelectorProps> = ({handlerCard}
 
     React.useEffect(() => {
         setDestiny();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     React.useEffect(() => {
