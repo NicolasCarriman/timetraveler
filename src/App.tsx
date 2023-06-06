@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from './theme/theme';
-import { CoreComponent } from './features/core-component/CoreComponent';
-import { ModuleCoreConfiguration } from './models/moduleCoreConfig';
+import { CoreComponent } from './features/components/core-component/CoreComponent';
+import { ModuleCoreConfiguration } from './features/models/moduleCoreConfig';
 import {Provider} from 'react-redux';
 import { store } from './redux/store';
 

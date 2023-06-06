@@ -3,7 +3,7 @@ import { Container } from "./container";
 import { motion } from "framer-motion";
 
 interface BoxImageProps {
-  imgUrl?: string
+  imgurl?: string
   children: React.ReactNode
 }
 export const BoxImage: React.FC<BoxImageProps> = (props) => {
@@ -21,11 +21,11 @@ export const BoxImage: React.FC<BoxImageProps> = (props) => {
         justifyContent='center'
       >
         {
-          props.imgUrl ?
+          props.imgurl ?
           <Box
             as={motion.img}
-            key={props.imgUrl}
-            src={props.imgUrl}
+            key={props.imgurl}
+            src={props.imgurl}
             alt='bannerImg'
             objectFit='cover'
             height='100%'
